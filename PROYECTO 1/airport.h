@@ -15,7 +15,9 @@ class Airport {
     private:
         vector<Flight> flightsRegister;
         vector<Gate> gatesRegister;
-        vector<Aircraft> aircraftRegister;
+        vector<Airplane> airplaneRegister;
+        vector<Helicopter> helicopterRegister;
+        vector<PrivateJet> privateJetRegister;
         static Airport instance;
 
         Airport() {}  // Constructor privado para garantizar una única instancia
@@ -24,7 +26,9 @@ class Airport {
         // Obtener la instancia única del aeropuerto
         static Airport& getInstance();
         void createAircraft();
-        void createFlight();
+        void createAirplane();
+        void createHelicopter();
+        void createPrivateJet();
         void createGate();
     };
 
