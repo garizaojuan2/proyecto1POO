@@ -8,6 +8,7 @@ Person::Person(int _id, const string& _name, const string& _lastName,
     : id(_id), name(_name), lastName(_lastName), birthdate(_birthdate),
     gender(_gender), address(_address), phoneNumber(_phoneNumber), email(_email) {
 }
+Person::Person(){}
 
 // Métodos get privados
 int Person::getId(){ return id; }

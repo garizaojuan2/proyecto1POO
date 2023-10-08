@@ -17,6 +17,7 @@ public:
            const string& _birthdate, const string& _gender,
            const string& _address, int _phoneNumber, const string& _email,
            const string& _position, int _yearsOfExperience, int _maxDailyHours);
+    Worker();
 
     // Métodos get de Worker
     string getPosition();

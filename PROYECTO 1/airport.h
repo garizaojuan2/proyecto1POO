@@ -22,9 +22,7 @@ class Airport {
 
     public:
         // Obtener la instancia única del aeropuerto
-        static Airport& getInstance() {
-            return instance;
-        }
+        static Airport& getInstance();
     };
 
 #endif

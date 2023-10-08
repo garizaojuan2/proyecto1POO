@@ -23,6 +23,7 @@ public:
     Person(int _id, const string& _name, const string& _lastName,
            const string& _birthdate, const string& _gender,
            const string& _address, int _phoneNumber, const string& _email);
+    person();
 
     // Métodos get privados
     int getId();

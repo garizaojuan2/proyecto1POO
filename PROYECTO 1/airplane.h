@@ -17,19 +17,16 @@ using namespace std;
         // Constructor
         Airplane(string brand, string model, int capacity, int maxSpeed,
                  int autonomy, int year, string condition, string ubication,
-                 bool availability, int maxAltitude, int engineAmount, string category)
-            : Aircraft(brand, model, capacity, maxSpeed, autonomy, year, condition,
-                       ubication, availability), maxAltitude(maxAltitude),
-              engineAmount(engineAmount), category(category) {}
+                 bool availability, int maxAltitude, int engineAmount, string category);
 
         // Getters y setters para los atributos específicos de Airplane
-        int getMaxAltitude() const { return maxAltitude; }
-        int getEngineAmount() const { return engineAmount; }
-        string getCategory() const { return category; }
+        int getMaxAltitude();
+        int getEngineAmount() ;
+        string getCategory();
 
-        void setMaxAltitude(int newMaxAltitude) { maxAltitude = newMaxAltitude; }
-        void setEngineAmount(int newEngineAmount) { engineAmount = newEngineAmount; }
-        void setCategory(string newCategory) { category = newCategory; }
+        void setMaxAltitude(int newMaxAltitude);
+        void setEngineAmount(int newEngineAmount);
+        void setCategory(string newCategory);
     };
 
 

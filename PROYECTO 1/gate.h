@@ -18,26 +18,23 @@ private:
 public:
     // Constructor
     Gate(const Flight& _flightAssigned, int _id, const string& _location,
-         bool _availability, const string& _boardingHour, const vector<Flight>& _flightsRecord)
-        : flightAssigned(_flightAssigned), id(_id), location(_location),
-          availability(_availability), boardingHour(_boardingHour), flightsRecord(_flightsRecord) {
-    }
+         bool _availability, const string& _boardingHour, const vector<Flight>& _flightsRecord);
 
     // Métodos get
-    Flight getFlightAssigned() const { return flightAssigned; }
-    int getId() const { return id; }
-    string getLocation() const { return location; }
-    bool isAvailable() const { return availability; }
-    string getBoardingHour() const { return boardingHour; }
-    vector<Flight> getFlightsRecord() const { return flightsRecord; }
+    Flight getFlightAssigned();
+    int getId();
+    string getLocation();
+    bool isAvailable();
+    string getBoardingHour();
+    vector<Flight> getFlightsRecord();
 
     // Métodos set
-    void setFlightAssigned(const Flight& _flightAssigned) { flightAssigned = _flightAssigned; }
-    void setId(int _id) { id = _id; }
-    void setLocation(const string& _location) { location = _location; }
-    void setAvailability(bool _availability) { availability = _availability; }
-    void setBoardingHour(const string& _boardingHour) { boardingHour = _boardingHour; }
-    void setFlightsRecord(const vector<Flight>& _flightsRecord) { flightsRecord = _flightsRecord; }
+    void setFlightAssigned(const Flight& _flightAssigned);
+    void setId(int _id);
+    void setLocation(const string& _location);
+    void setAvailability(bool _availability);
+    void setBoardingHour(const string& _boardingHour);
+    void setFlightsRecord(const vector<Flight>& _flightsRecord);
 };
 
 #endif

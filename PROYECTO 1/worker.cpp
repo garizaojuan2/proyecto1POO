@@ -10,6 +10,7 @@ Worker::Worker(int _id, const string& _name, const string& _lastName,
     : Person(_id, _name, _lastName, _birthdate, _gender, _address, _phoneNumber, _email),
     position(_position), yearsOfExperience(_yearsOfExperience), maxDailyHours(_maxDailyHours) {
 }
+Worker::Worker(){}
 
 // Métodos get de Worker
 string Worker::getPosition()  { return position; }
