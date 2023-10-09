@@ -24,6 +24,7 @@ class Airport {
         // Obtener la instancia única del aeropuerto
         static Airport& getInstance();
         void assignFlight(Aircraft &aircrft, Flight &flight, Gate &gate);
+        void buyFlight(string destination, string date);
     };
 
 #endif
