@@ -30,4 +30,8 @@ Flight::Flight(int _id, const string& _date, const string& _origin, const string
     void Flight::setPassengersRegistered(const map<int, Passenger>& _passengersRegistered) {
         passengersRegistered = _passengersRegistered;
     }
-    void Flight::setAirplane(Airplane *_airplane) {airplane = _airplane;}
+    void Flight::setAirplane(Airplane *_airplane) {
+               airplane = _airplane;
+               availableSeats = (*_airplane).getCapacity();
+    }
+    void Flight::setAvailableSeats(int num) {availableSeats = num}
