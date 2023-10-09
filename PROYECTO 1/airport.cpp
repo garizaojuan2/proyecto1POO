@@ -6,3 +6,8 @@ using namespace std;
 Airport& Airport::getInstance() {
     return instance;
 }
+
+void Airport:: buyFlight(string destination, string date){
+    pair<string, string> infoRequiered(destination, date);
+    
+}
