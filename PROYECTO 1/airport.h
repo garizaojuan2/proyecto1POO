@@ -13,7 +13,7 @@ using namespace std;
 
 class Airport {
     private:
-        vector<Flight> flightsRegister;
+        map<pair<string, string>, Flight> flightsRegister;
         vector<Gate> gatesRegister;
         vector<Airplane> airplaneRegister;
         vector<Helicopter> helicopterRegister;
@@ -28,7 +28,7 @@ class Airport {
         void infoAirCrafts();
         void getFlights();
         void getPassangers(Flight);
-        void buyFlight(string, string);
+        void buyFlight(string destination, string date);
         void createAircraft();
         void createAirplane();
         void createHelicopter();
