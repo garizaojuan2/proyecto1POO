@@ -8,6 +8,8 @@ PrivateJet::PrivateJet(const string& _brand, const string& _model, const string&
     owner = _owner;
 }
 
+PrivateJet::PrivateJet(){}
+
 // Implementación de métodos set
 void PrivateJet::setOwner( Person *_owner) {
     owner = _owner;

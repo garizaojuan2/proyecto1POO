@@ -21,6 +21,8 @@ class Airport {
         vector<Airplane*> airplaneRegister;
         vector<Helicopter*> helicopterRegister;
         vector<PrivateJet*> privateJetRegister;
+        vector<Worker*> airportCrew;
+        vector<Passenger*> passengersRegistered;
         //static Airport instance;
         //Airport();   // Constructor privado para garantizar una única instancia
         
@@ -37,13 +39,16 @@ class Airport {
         void addAirplane(Airplane* _plane);
         void addHelicopter(Helicopter* _helicopter);
         void addJet(PrivateJet* _jet);
+        void addWorker(Worker* _worker);
+        void addPassenger(Passenger* _passenger);
+        void createAirplane();
         void createFlight();
         void createGate();
-        void createPassanger();
+        void createPassenger();
         void createWorker();
         void createPrivateJet();
         void createHelicopter();
-        void buyFlight(string, string);
+        void buyFlight(string, string, Passenger*);
         void assignFlight(Flight *vuelo);
     
 

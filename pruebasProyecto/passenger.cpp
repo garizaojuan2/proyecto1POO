@@ -10,7 +10,7 @@ Passenger::Passenger(int _id, const string& _name, const string& _lastName,
     : Person(_id, _name, _lastName, _birthdate, _gender, _address, _phoneNumber, _email),
    nationality(_nationality), baggageAmount(_baggageAmount), medicalInformation(_medicalInformation) {
 }
-
+Passenger::Passenger(){}
 // Métodos get de Passenger
 string Passenger::getNationality()  { return nationality; }
 int Passenger::getBaggageAmount()  { return baggageAmount; }

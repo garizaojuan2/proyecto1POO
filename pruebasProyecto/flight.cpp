@@ -4,8 +4,8 @@
 using namespace std;
 
 Flight::Flight(int _id, const string& _date, const string& _origin, const string& _destination,
-           const vector<Worker>& _assignedCrew,
-           const map<int, Passenger>& _passengersRegistered)
+           const vector<Worker*>& _assignedCrew,
+           const map<int, Passenger*>& _passengersRegistered)
         : id(_id), date(_date), origin(_origin), destination(_destination),
           assignedCrew(_assignedCrew),
           passengersRegistered(_passengersRegistered){
@@ -17,9 +17,9 @@ Flight::Flight(){}
     string Flight::getDate()  { return date; }
     string Flight::getOrigin()  { return origin; }
     string Flight::getDestination()  { return destination; }
-    vector<Worker> Flight::getAssignedCrew()  { return assignedCrew; }
+    vector<Worker*> Flight::getAssignedCrew()  { return assignedCrew; }
     Gate* Flight::getBoardingGate()  { return boardingGate; }
-    map<int, Passenger> Flight::getPassengersRegistered()  { return passengersRegistered; }
+    map<int, Passenger*> Flight::getPassengersRegistered()  { return passengersRegistered; }
     Airplane* Flight::getAirplane(){return airplane;}
     int Flight::getAvailableSeats(){return availableSeats;}
 
@@ -28,10 +28,12 @@ Flight::Flight(){}
     void Flight::setDate(const string& _date) { date = _date; }
     void Flight::setOrigin(const string& _origin) { origin = _origin; }
     void Flight::setDestination(const string& _destination) { destination = _destination; }
-    void Flight::setAssignedCrew(const vector<Worker>& _assignedCrew) { assignedCrew = _assignedCrew; }
+    void Flight::setAssignedCrew(const vector<Worker*>& _assignedCrew) { assignedCrew = _assignedCrew; }
     void Flight::setBoardingGate(Gate *_boardingGate) { boardingGate = _boardingGate; }
-    void Flight::setPassengersRegistered(const map<int, Passenger>& _passengersRegistered) {
-        passengersRegistered = _passengersRegistered;
+    void Flight::setPassengersRegistered(Passenger* _passenger) {
+        int id = _passenger->getId();
+        passengersRegistered[id] = _passenger;
+
     }
 
     // Funcionalidades

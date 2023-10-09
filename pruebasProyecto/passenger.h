@@ -20,7 +20,7 @@ public:
                const string& _address, int _phoneNumber, const string& _email,
                const string& _nationality, int _baggageAmount, const string& _medicalInformation);
     
-
+    Passenger();
     // Métodos get de Passenger
     string getNationality();
     int getBaggageAmount();

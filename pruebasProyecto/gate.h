@@ -21,7 +21,7 @@ public:
     // Constructor
     Gate(int _id, const string& _location,
          bool _availability, const string& _boardingHour);
-
+    Gate();
     // Métodos get
     Flight getFlightAssigned();
     int getId();

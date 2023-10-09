@@ -9,6 +9,7 @@ using namespace std;
         : id(_id), location(_location),
           availability(_availability), boardingHour(_boardingHour) {
     }
+    Gate::Gate(){}
 
     // Métodos get
     Flight Gate::getFlightAssigned()  { return *flightAssigned; }

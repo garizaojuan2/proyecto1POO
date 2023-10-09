@@ -20,6 +20,8 @@ public:
              int _autonomy, int _year, const string& _condition, const string& _ubication,
              bool _availability,  Person *_owner);
 
+    PrivateJet();
+
     // Métodos set
     void setOwner( Person *_owner);
     void addService(const string& service);

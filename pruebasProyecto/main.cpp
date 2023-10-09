@@ -41,7 +41,7 @@ int main(){
     Airport::getInstance().addAirplane(&plane01);
     Airport::getInstance().addAirplane(&plane02);
     
-
+    
     ControlTower::getInstance().addAircraft(&air01);
     ControlTower::getInstance().addAircraft(&air02);
     ControlTower::getInstance().addAircraft(&air03);
@@ -57,12 +57,12 @@ int main(){
 
     air01.reportLocation("Panama");
 
-
+    Passenger pablito;
     cout << "########################################" << endl;
 
 
     Airport::getInstance().assignFlight(&vuelo1);
-    Airport::getInstance().buyFlight("BGO", "120824");
+    Airport::getInstance().buyFlight("BGO", "120824", &pablito);
 
     return 0;
 

@@ -22,9 +22,9 @@ private:
     string date;
     string origin;
     string destination;
-    vector<Worker> assignedCrew;
+    vector<Worker*> assignedCrew;
     Gate* boardingGate;
-    map<int, Passenger> passengersRegistered;
+    map<int, Passenger*> passengersRegistered;
     Airplane* airplane;
     int availableSeats;
 
@@ -32,8 +32,8 @@ private:
 public:
     // Constructor
     Flight(int _id, const string& _date, const string& _origin, const string& _destination,
-           const vector<Worker>& _assignedCrew,
-           const map<int, Passenger>& _passengersRegistered);
+           const vector<Worker*>& _assignedCrew,
+           const map<int, Passenger*>& _passengersRegistered);
     Flight();
     
 
@@ -42,9 +42,9 @@ public:
     string getDate() ;
     string getOrigin() ;
     string getDestination();
-    vector<Worker> getAssignedCrew();
+    vector<Worker*> getAssignedCrew();
     Gate* getBoardingGate();
-    map<int, Passenger> getPassengersRegistered();
+    map<int, Passenger*> getPassengersRegistered();
     Airplane* getAirplane();
     int getAvailableSeats();
         
@@ -55,9 +55,9 @@ public:
     void setDate(const string& _date);
     void setOrigin(const string& _origin);
     void setDestination(const string& _destination);
-    void setAssignedCrew(const vector<Worker>& _assignedCrew);
+    void setAssignedCrew(const vector<Worker*>& _assignedCrew);
     void setBoardingGate(Gate *_boardingGate) ;
-    void setPassengersRegistered(const map<int, Passenger>& _passengersRegistered);
+    void setPassengersRegistered(Passenger* _passenger);
     void setAirplane(Airplane *_airplane);
 
     
