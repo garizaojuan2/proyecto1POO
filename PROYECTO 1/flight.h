@@ -21,6 +21,7 @@ private:
     vector<Worker> assignedCrew;
     Gate boardingGate;
     map<int, Passenger> passengersRegistered;
+    int availableSeats
 
 public:
     // Constructor
@@ -37,6 +38,7 @@ public:
     vector<Worker> getAssignedCrew();
     Gate getBoardingGate();
     map<int, Passenger> getPassengersRegistered();
+    int getAvailableSeats();
 
     // Métodos set
     void setId(int _id);
@@ -46,6 +48,7 @@ public:
     void setAssignedCrew(const vector<Worker>& _assignedCrew);
     void setBoardingGate(const Gate& _boardingGate) ;
     void setPassengersRegistered(const map<int, Passenger>& _passengersRegistered);
+    void changeAvailableSeats();
     
 };
 
