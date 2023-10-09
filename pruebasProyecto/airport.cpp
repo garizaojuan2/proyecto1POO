@@ -7,8 +7,17 @@ Airport& Airport::getInstance() {
     return instance;
 }
 
-void Airport::assignFlight(Aircraft &aircrft, Flight &flight, Gate &gate){
-  
+void Airport::assignFlight(Flight &vuelo){
+  int i = 0;
+  bool flag = true;
+  while(flag && i < airplaneRegister.size()){
+      if(airplaneRegister[i].getAssignedFlights().size() < 3){
+          airplaneRegister[i].addFlight();
+          vuelo.setAirplane(airplaneRegister[i]);
+          flag = false;
+      }
+      i += 1;
+  }
 }
 
 void Airport:: buyFlight(string destination, string date){
