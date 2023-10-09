@@ -23,5 +23,5 @@ void Airport:: buyFlight(string destination, string date){
         }
         }
     else
-        cout << "El vuelo no está disponible" << endl;
+        cout << "El vuelo no existe para ese destino o fecha" << endl;
 }
