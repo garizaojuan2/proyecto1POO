@@ -31,7 +31,7 @@ class Airport {
         void createPrivateJet();
         void createHelicopter();
         void buyFlight(string, string);
-        void assignFlight();
+        void assignFlight(Flight* vuelo);
     };
 
 #endif
