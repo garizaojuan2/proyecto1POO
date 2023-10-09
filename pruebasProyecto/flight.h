@@ -8,6 +8,8 @@
 #include "passenger.h"
 #include <map>
 #include <vector>
+#include "aircraft.h"
+#include "airplane.h"
 
 using namespace std;
 
@@ -22,12 +24,14 @@ private:
     vector<Worker> assignedCrew;
     Gate* boardingGate;
     map<int, Passenger> passengersRegistered;
+    Airplane* airplane;
+    int avaliableSeats;
 
 public:
     // Constructor
     Flight(int _id, const string& _date, const string& _origin, const string& _destination,
            const vector<Worker>& _assignedCrew,  Gate *_boardingGate,
-           const map<int, Passenger>& _passengersRegistered);
+           const map<int, Passenger>& _passengersRegistered, Airplane *airplane);
     
 
     // Métodos get
@@ -38,6 +42,9 @@ public:
     vector<Worker> getAssignedCrew();
     Gate* getBoardingGate();
     map<int, Passenger> getPassengersRegistered();
+    Airplane* getAirplane();
+        
+    
 
     // Métodos set
     void setId(int _id);
@@ -47,6 +54,8 @@ public:
     void setAssignedCrew(const vector<Worker>& _assignedCrew);
     void setBoardingGate(Gate *_boardingGate) ;
     void setPassengersRegistered(const map<int, Passenger>& _passengersRegistered);
+    void setAirplane(Airplane *_airplane);
+    void setAvaliableSeats(int _avaliableSeats);
     
 };
 

@@ -4,10 +4,10 @@ using namespace std;
 
 Flight::Flight(int _id, const string& _date, const string& _origin, const string& _destination,
            const vector<Worker>& _assignedCrew,  Gate *_boardingGate,
-           const map<int, Passenger>& _passengersRegistered)
+           const map<int, Passenger>& _passengersRegistered, Airplane *_airplane)
         : id(_id), date(_date), origin(_origin), destination(_destination),
           assignedCrew(_assignedCrew), boardingGate(_boardingGate),
-          passengersRegistered(_passengersRegistered) {
+          passengersRegistered(_passengersRegistered), airplane (_airplane){
     }
 
     // Métodos get
@@ -18,6 +18,7 @@ Flight::Flight(int _id, const string& _date, const string& _origin, const string
     vector<Worker> Flight::getAssignedCrew()  { return assignedCrew; }
     Gate* Flight::getBoardingGate()  { return boardingGate; }
     map<int, Passenger> Flight::getPassengersRegistered()  { return passengersRegistered; }
+    Airplane* Flight::getAirplane(){return airplane;}
 
     // Métodos set
     void Flight::setId(int _id) { id = _id; }
@@ -29,3 +30,4 @@ Flight::Flight(int _id, const string& _date, const string& _origin, const string
     void Flight::setPassengersRegistered(const map<int, Passenger>& _passengersRegistered) {
         passengersRegistered = _passengersRegistered;
     }
+    void Flight::setAirplane(Airplane *_airplane) {airplane = _airplane;}
