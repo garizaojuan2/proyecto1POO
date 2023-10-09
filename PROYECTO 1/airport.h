@@ -25,11 +25,16 @@ class Airport {
     public:
         // Obtener la instancia única del aeropuerto
         static Airport& getInstance();
+        infoAirCrafts();
+        getFlights();
+        getPassangers(Flight);
+        buyFlight(string, string);
         void createAircraft();
         void createAirplane();
         void createHelicopter();
         void createPrivateJet();
         void createGate();
+    
     };
 
 #endif
