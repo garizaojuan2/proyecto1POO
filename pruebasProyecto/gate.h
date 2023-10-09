@@ -15,12 +15,12 @@ private:
     string location;
     bool availability;
     string boardingHour;
-    vector<Flight> flightsRecord;
+    vector<Flight*> flightsRecord;
 
 public:
     // Constructor
     Gate(int _id, const string& _location,
-         bool _availability, const string& _boardingHour, const vector<Flight>& _flightsRecord);
+         bool _availability, const string& _boardingHour);
 
     // Métodos get
     Flight getFlightAssigned();
@@ -28,15 +28,15 @@ public:
     string getLocation();
     bool isAvailable();
     string getBoardingHour();
-    vector<Flight> getFlightsRecord();
+    vector<Flight*> getFlightsRecord();
 
     // Métodos set
     void setFlightAssigned(Flight *_flightAssigned);
-    void setId(int _id);
+    void setId(int _id);    
     void setLocation(const string& _location);
     void setAvailability(bool _availability);
     void setBoardingHour(const string& _boardingHour);
-    void addFlightsRecord(const vector<Flight>& _flightsRecord);
+    void addFlightsRecord(Flight *_flight);
 };
 
 #endif

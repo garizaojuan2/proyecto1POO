@@ -1,4 +1,6 @@
 #include "aircraft.h"
+#include "controlTower.h"
+#include "aircraft.h"
 
 using namespace std;
 
@@ -23,6 +25,8 @@ int Aircraft::getYear()  { return year; }
 string Aircraft::getCondition()  { return condition; }
 string Aircraft::getUbication()  { return ubication; }
 bool Aircraft::isAvailable()  { return availability; }
+Flight* Aircraft::getFlightAsociated() {return flightAssociated;}
+int Aircraft::getAssignedFlights(){return assignedFlights.size();}
 
 // Métodos set
 void Aircraft::setBrand(const string& _brand) { brand = _brand; }
@@ -35,6 +39,7 @@ void Aircraft::setYear(int _year) { year = _year; }
 void Aircraft::setCondition(const string& _condition) { condition = _condition; }
 void Aircraft::setUbication(const string& _ubication) { ubication = _ubication; }
 void Aircraft::setAvailability(bool _availability) { availability = _availability; }
+void Aircraft::setFlightAsociated(Flight *_flightAssociated) {flightAssociated = _flightAssociated;}
 
 // Funcionalidades
 
@@ -53,4 +58,8 @@ void Aircraft::reportLocation(const string& ubicacion) {
 
 void Aircraft::recibeInfo(const string& mensaje) {
     cout << "Avion " << id << " recibio un mensaje: " << mensaje << endl;
+}
+
+void Aircraft::addFlight(Flight *flight){
+    assignedFlights.push_back(flight);
 }

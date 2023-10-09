@@ -8,7 +8,6 @@
 #include <iostream>
 int main(){
 
-    Airport::getInstance(); //Aeropuerto Alfonso Bonilla
 
     Aircraft air01;
     Aircraft air02;
@@ -20,7 +19,15 @@ int main(){
 
     Airplane plane01;
     Airplane plane02;
-    
+
+    Flight vuelo1;
+
+    vuelo1.setId(90);
+
+    vuelo1.setOrigin("CLO");
+    vuelo1.setDestination("BGO");
+    vuelo1.setDate("120824");
+    Airport::getInstance().addFlight(&vuelo1);
     
     air01.setId("craft1");
     air02.setId("craft2");
@@ -29,8 +36,11 @@ int main(){
     h01.setId("h1");
     h02.setId("h2");
 
-    plane01.setId("plane1");
+    plane01.setId("102910920");
     plane02.setId("plane2");
+    Airport::getInstance().addAirplane(&plane01);
+    Airport::getInstance().addAirplane(&plane02);
+    
 
     ControlTower::getInstance().addAircraft(&air01);
     ControlTower::getInstance().addAircraft(&air02);
@@ -46,7 +56,14 @@ int main(){
     cout << "#############################" << endl;
 
     air01.reportLocation("Panama");
-    
+
+
+    cout << "########################################" << endl;
+
+
+    Airport::getInstance().assignFlight(&vuelo1);
+    Airport::getInstance().buyFlight("BGO", "120824");
+
     return 0;
 
 }

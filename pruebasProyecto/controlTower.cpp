@@ -6,6 +6,16 @@ void ControlTower::aircraftTakeOff(Aircraft* aircraft) {
     string msg = "El avion " + aircraft->getId() + " ha despegado.";
     cout << "Torre de Control: " << msg << endl;
     notify(aircraft, msg);
+
+    int i = 0;
+    bool flag = true;
+    while(i < gates.size() && flag){
+        if(gates[i]->getFlightAssigned().getId() == aircraft->getFlightAsociated()->getId()){
+        flag = false;
+        gates[i]->setAvailability(true);
+        }
+        i++;
+    }
 }
 
 void ControlTower::aircraftLanded(Aircraft* aircraft) {
@@ -31,3 +41,25 @@ void ControlTower::notify(Aircraft* aircraft, const string& msg) {
 void ControlTower::addAircraft(Aircraft* aircraft) {
         aircrafts.push_back(aircraft);
     }
+
+void ControlTower::assignBoardingGate(Flight *flight){
+    int i = 0;
+    bool flag = true;
+    while(i < gates.size() && flag){
+        if(gates[i]->isAvailable())
+        flag = false;
+        i++;
+    }
+    if(!flag){
+        gates[i]->setFlightAssigned(flight);
+        gates[i]->setAvailability(false);
+        gates[i]->addFlightsRecord(flight);
+        flight->setBoardingGate(gates[i]);
+        cout << "El vuelo " << flight->getId() << " se ha asociado a la puerta: Gate " << this->gates[i]->getId();
+    }
+    else{
+        cout << "No hay puertas de embarque disponibles" << endl;
+    }
+
+   
+}

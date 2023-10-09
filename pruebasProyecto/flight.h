@@ -13,6 +13,7 @@
 
 using namespace std;
 
+class Aircraft;
 class Gate;
 
 class Flight {
@@ -25,13 +26,15 @@ private:
     Gate* boardingGate;
     map<int, Passenger> passengersRegistered;
     Airplane* airplane;
-    int avaliableSeats;
+    int availableSeats;
+
 
 public:
     // Constructor
     Flight(int _id, const string& _date, const string& _origin, const string& _destination,
-           const vector<Worker>& _assignedCrew,  Gate *_boardingGate,
-           const map<int, Passenger>& _passengersRegistered, Airplane *airplane);
+           const vector<Worker>& _assignedCrew,
+           const map<int, Passenger>& _passengersRegistered);
+    Flight();
     
 
     // Métodos get
@@ -43,6 +46,7 @@ public:
     Gate* getBoardingGate();
     map<int, Passenger> getPassengersRegistered();
     Airplane* getAirplane();
+    int getAvailableSeats();
         
     
 
@@ -55,7 +59,12 @@ public:
     void setBoardingGate(Gate *_boardingGate) ;
     void setPassengersRegistered(const map<int, Passenger>& _passengersRegistered);
     void setAirplane(Airplane *_airplane);
-    void setAvaliableSeats(int _avaliableSeats);
+
+    
+    void setAvailableSeats(int _avaliableSeats);
+
+    //funcionalidades
+    void embark();
     
 };
 

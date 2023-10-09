@@ -5,9 +5,9 @@ using namespace std;
 
 // Constructor
     Gate::Gate(int _id, const string& _location,
-         bool _availability, const string& _boardingHour, const vector<Flight>& _flightsRecord)
+         bool _availability, const string& _boardingHour)
         : id(_id), location(_location),
-          availability(_availability), boardingHour(_boardingHour), flightsRecord(_flightsRecord) {
+          availability(_availability), boardingHour(_boardingHour) {
     }
 
     // Métodos get
@@ -16,7 +16,7 @@ using namespace std;
     string Gate::getLocation()  { return location; }
     bool Gate::isAvailable()  { return availability; }
     string Gate::getBoardingHour()  { return boardingHour; }
-    vector<Flight> Gate::getFlightsRecord()  { return flightsRecord; }
+    vector<Flight*> Gate::getFlightsRecord()  { return flightsRecord; }
 
     // Métodos set
     void Gate::setFlightAssigned( Flight *_flightAssigned) {flightAssigned = _flightAssigned; }
@@ -24,4 +24,4 @@ using namespace std;
     void Gate::setLocation(const string& _location) { location = _location; }
     void Gate::setAvailability(bool _availability) { availability = _availability; }
     void Gate::setBoardingHour(const string& _boardingHour) { boardingHour = _boardingHour; }
-    void Gate::addFlightsRecord(const vector<Flight>& _flightsRecord) { flightsRecord = _flightsRecord; }
+    void Gate::addFlightsRecord(Flight *_flight) {flightsRecord.push_back(_flight);}

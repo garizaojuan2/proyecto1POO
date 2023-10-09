@@ -5,12 +5,14 @@
 #include <string>
 //#include "flight.h"
 #include <vector>
-#include "controlTower.h"
+//#include "controlTower.h"
+
 
 
 using namespace std;
 
 class ControlTower;
+class Flight;
 
 class Aircraft {
 private:
@@ -22,9 +24,10 @@ private:
     int autonomy;
     int year;
     string condition;
-    vector<Flight> assignedFlights;
+    vector<Flight*> assignedFlights;
     string ubication;
     bool availability;
+    Flight* flightAssociated;
 
 public:
     // Constructor
@@ -44,6 +47,9 @@ public:
     string getCondition();
     string getUbication();
     bool isAvailable();
+    Flight* getFlightAsociated();
+    int getAssignedFlights();
+
 
 
     // Métodos set
@@ -57,11 +63,13 @@ public:
     void setCondition(const string& _condition);
     void setUbication(const string& _ubication);
     void setAvailability(bool _availability);
+    void setFlightAsociated(Flight *_flightAssociated);
 
     // Funcionalidades
     void takeOff();
     void landed();
     void reportLocation(const string& location);
     void recibeInfo(const string& msg);
+    void addFlight(Flight *flight);
 };
 #endif
