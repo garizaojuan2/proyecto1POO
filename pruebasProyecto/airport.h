@@ -13,11 +13,12 @@ using namespace std;
 
 class Airport {
     private:
-        vector<Flight> flightsRegister;
+        map<pair<string, string>, Flight> flightsRegister;
         vector<Gate> gatesRegister;
-        vector<Aircraft> aircraftRegister;
+        vector<Airplane> airplaneRegister;
+        vector<Helicopter> helicopterRegister;
+        vector<PrivateJet> privateJetRegister;
         static Airport instance;
-
         Airport() {}  // Constructor privado para garantizar una única instancia
 
     public:
