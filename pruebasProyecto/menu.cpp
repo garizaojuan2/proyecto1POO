@@ -30,27 +30,33 @@ void crearObjetos(){
     {
     case 1:
         Airport::getInstance().createWorker();    
+        op = 7;
 
         break;
 
     case 2:
         Airport::getInstance().createAirplane();
+        op = 7;
         break;
 
     case 3:
         Airport::getInstance().createHelicopter();
+        op = 7;
         break;
 
     case 4:
         Airport::getInstance().createPrivateJet();
+        op = 7;
         break;
 
     case 5:
         Airport::getInstance().createPassenger();
+        op = 7;
         break;
 
     case 6:
         Airport::getInstance().createGate();
+        op = 7;
         break;
     default:
         cout << "Opcion invalida, digite una nueva opcion: ";
@@ -58,6 +64,7 @@ void crearObjetos(){
         cout << endl;
         break;
     }while(op!=7);
+    cout << "Volviendo al menu principal..." << endl;
 
 
 }
@@ -79,6 +86,15 @@ void menu(){
 }
 
 int main(){
+    string dest;
+    string date;
+    int num = Airport::getInstance().getPassengersRegisterSize();
+    Passenger* _passenger = nullptr;    
+
+    //cout << "Identifícate por favor, llena los siguientes datos para poder reservar el vuelo" << endl;
+    //Airport::getInstance().createPassenger();
+    //_passenger = Airport::getInstance().getPassenger(num);
+
 
     int op;
     do{
@@ -86,6 +102,8 @@ int main(){
         cout << "Seleccione una opcion > ";
         cin >> op;
         cout << endl;
+        string dest;
+        string date;
 
         switch (op)
         {
@@ -95,7 +113,32 @@ int main(){
 
         case 2:
             cout << "Identificate por favor, llena los siguientes datos para poder reservar el vuelo" << endl;
+            num = Airport::getInstance().getPassengersRegisterSize();
             Airport::getInstance().createPassenger();
+            _passenger  = Airport::getInstance().getPassenger(num); 
+
+            cout << "Digita el destino del vuelo : ";
+        
+            cin >> dest;
+            cout << "Digite la fecha del vuelo (formato: YYYY-MM-DD): ";
+            
+            cin >> date;
+
+            try {
+            if (date.size() != 10 || date[4] != '-' || date[7] != '-') {
+                throw invalid_argument("Formato de fecha incorrecto. Debe ser YYYY-MM-DD.");
+            }
+
+            for (int i = 0; i < 10; ++i) {
+                if (i != 4 && i != 7 && !isdigit(date[i])) {
+                    throw invalid_argument("Fecha inválida. Deben ser números.");
+                }
+            }
+        } catch (const invalid_argument& e) {
+            cerr << "Error: " << e.what() << endl;
+            return false;
+        }           
+                Airport::getInstance().buyFlight(dest,date, _passenger);
             
             break;
 

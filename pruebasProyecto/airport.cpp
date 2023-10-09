@@ -473,3 +473,12 @@ void Airport::createHelicopter() {
 
     Airport::getInstance().addHelicopter(helicopter);
 }
+
+Passenger* Airport::getPassenger(int n){
+    return passengersRegistered[n];
+}
+
+int Airport::getPassengersRegisterSize(){
+    return passengersRegistered.size();
+}
+

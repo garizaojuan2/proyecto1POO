@@ -23,13 +23,10 @@ class Airport {
         vector<PrivateJet*> privateJetRegister;
         vector<Worker*> airportCrew;
         vector<Passenger*> passengersRegistered;
-        //static Airport instance;
-        //Airport();   // Constructor privado para garantizar una única instancia
-        
+
 
     public:
-        // Obtener la instancia única del aeropuerto
-        //Airport& getInstance();
+
         static Airport& getInstance() {
             static Airport instance; // Singleton
             return instance;
@@ -50,6 +47,9 @@ class Airport {
         void createHelicopter();
         void buyFlight(string, string, Passenger*);
         void assignFlight(Flight *vuelo);
+        Passenger* getPassenger(int n);
+        int getPassengersRegisterSize();
+        
     
 
     };
