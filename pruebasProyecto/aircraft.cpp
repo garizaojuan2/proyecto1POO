@@ -63,3 +63,30 @@ void Aircraft::recibeInfo(const string& mensaje) {
 void Aircraft::addFlight(Flight *flight){
     assignedFlights.push_back(flight);
 }
+void Aircraft::print() const {
+    cout << "Aircraft Information:" << endl;
+    cout << "Brand: " << brand << endl;
+    cout << "Model: " << model << endl;
+    cout << "ID: " << id << endl;
+    cout << "Capacity: " << capacity << " passengers" << endl;
+    cout << "Max Speed: " << maxSpeed << " km/h" << endl;
+    cout << "Autonomy: " << autonomy << " km" << endl;
+    cout << "Year: " << year << endl;
+    cout << "Condition: " << condition << endl;
+    cout << "Ubication: " << ubication << endl;
+    cout << "Availability: " << (availability ? "Available" : "Not Available") << endl;
+
+    if (flightAssociated) {
+        cout << "Flight Associated:" << endl;
+        cout << "Flight Number: " << flightAssociated->getFlightNumber() << endl;
+        cout << "Flight Details:" << endl;
+        flightAssociated->print(); // Llama a la función print de la clase Flight
+    }
+
+    cout << "Assigned Flights:" << endl;
+    for (const Flight* flight : assignedFlights) {
+        cout << "Flight Number: " << flight->getFlightNumber() << endl;
+        cout << "Flight Details:" << endl;
+        flight->print(); // Llama a la función print de la clase Flight
+    }
+}
