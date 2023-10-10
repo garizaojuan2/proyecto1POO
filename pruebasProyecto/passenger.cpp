@@ -20,3 +20,10 @@ string Passenger::getMedicalInformation()  { return medicalInformation; }
 void Passenger::setNationality(const string& _nationality) { nationality = _nationality; }
 void Passenger::setBaggageAmount(int _baggageAmount) { baggageAmount = _baggageAmount; }
 void Passenger::setMedicalInformation(const string& _medicalInformation) { medicalInformation = _medicalInformation; }
+
+void Passenger::print() const override {
+        Person::print();
+        cout << "Nationality: " << nationality << endl;
+        cout << "Baggage Amount: " << baggageAmount << endl;
+        cout << "Medical Information: " << medicalInformation << endl;
+}
