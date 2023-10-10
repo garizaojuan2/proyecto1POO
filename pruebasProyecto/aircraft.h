@@ -66,6 +66,7 @@ public:
     void setFlightAsociated(Flight *_flightAssociated);
 
     // Funcionalidades
+    virtual void print() const;
     void takeOff();
     void landed();
     void reportLocation(const string& location);
