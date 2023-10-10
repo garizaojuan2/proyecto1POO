@@ -20,4 +20,12 @@ string Helicopter::getUse() { return use; }
 void Helicopter::setEngineAmount(int newEngineAmount) { engineAmount = newEngineAmount; }
 void Helicopter::setElevationCapacity(int newElevationCapacity) { elevationCapacity = newElevationCapacity; }
 void Helicopter::setUse(string newUse) { use = newUse; }
+
+void Helicopter::print() const {
+    cout << "Helicopter Information:" << endl;
+    Aircraft::print();
+    cout << "Engine Amount: " << engineAmount << endl;
+    cout << "Elevation Capacity: " << elevationCapacity << " meters" << endl;
+    cout << "Use: " << use << endl;
+}
   
