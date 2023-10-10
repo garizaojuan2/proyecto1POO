@@ -31,6 +31,8 @@ public:
     Person* getOwner();
     vector<string> getServices();
     vector<string> getDestinations();
+
+    void print() const override;
 };
 
 #endif
