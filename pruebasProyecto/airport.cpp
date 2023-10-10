@@ -482,3 +482,32 @@ int Airport::getPassengersRegisterSize(){
     return passengersRegistered.size();
 }
 
+void Airport::printAirplanes() const {
+    cout << "Airplanes Registered:" << endl;
+    for (int i = 0; i < airplaneRegister.size(); ++i) {
+        cout << "Airplane " << i + 1 << ":" << endl;
+        airplaneRegister[i]->print();
+    }
+}
+
+void Airport::printHelicopters() const {
+    cout << "Helicopters Registered:" << endl;
+    for (int i = 0; i < helicopterRegister.size(); ++i) {
+        cout << "Helicopter " << i + 1 << ":" << endl;
+        helicopterRegister[i]->print();
+    }
+}
+
+void Airport::printPrivateJets() const {
+    cout << "Private Jets Registered:" << endl;
+    for (int i = 0; i < privateJetRegister.size(); ++i) {
+        cout << "Private Jet " << i + 1 << ":" << endl;
+        privateJetRegister[i]->print();
+    }
+}
+
+
+
+
+
+
