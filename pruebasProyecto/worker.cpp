@@ -21,3 +21,9 @@ int Worker::getMaxDailyHours()  { return maxDailyHours; }
 void Worker::setPosition(const string& _position) { position = _position; }
 void Worker::setYearsOfExperience(int _yearsOfExperience) { yearsOfExperience = _yearsOfExperience; }
 void Worker::setMaxDailyHours(int _maxDailyHours) { maxDailyHours = _maxDailyHours; }
+void Worker::print() const override {
+    Person::print();
+    cout << "Position: " << position << endl;
+    cout << "Years of Experience: " << yearsOfExperience << endl;
+    cout << "Max Daily Hours: " << maxDailyHours << endl;
+}
