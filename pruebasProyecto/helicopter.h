@@ -27,6 +27,7 @@ class Helicopter : public Aircraft {
         void setEngineAmount(int newEngineAmount);
         void setElevationCapacity(int newElevationCapacity);
         void setUse(string newUse);
+        void print() const override;
     };
 
 
