@@ -203,7 +203,7 @@ int main(){
             break;
         }
 
-    }while(op != 6);
+    }while(op != 7);
 
   
     return 0;
