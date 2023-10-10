@@ -84,8 +84,8 @@ void Aircraft::print() const {
     }
 
     cout << "Assigned Flights:" << endl;
-    for (const Flight* flight : assignedFlights) {
-        cout << "Flight Number: " << flight->getFlightNumber() << endl;
+    for (int i = 0; i < assignedFlights.size(); i++) {
+        cout << "Flight Number: " <<  i + 1<< endl;
         cout << "Flight Details:" << endl;
         flight->print(); // Llama a la función print de la clase Flight
     }
