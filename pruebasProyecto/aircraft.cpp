@@ -80,13 +80,13 @@ void Aircraft::print() const {
         cout << "Flight Associated:" << endl;
         cout << "Flight Number: " << flightAssociated->getFlightNumber() << endl;
         cout << "Flight Details:" << endl;
-        flightAssociated->print(); // Llama a la función print de la clase Flight
+        flightAssociated->print();
     }
 
     cout << "Assigned Flights:" << endl;
     for (int i = 0; i < assignedFlights.size(); i++) {
         cout << "Flight Number: " <<  i + 1<< endl;
         cout << "Flight Details:" << endl;
-        flight->print(); // Llama a la función print de la clase Flight
+        flight->print();
     }
 }
