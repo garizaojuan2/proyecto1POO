@@ -26,3 +26,24 @@ using namespace std;
     void Gate::setAvailability(bool _availability) { availability = _availability; }
     void Gate::setBoardingHour(const string& _boardingHour) { boardingHour = _boardingHour; }
     void Gate::addFlightsRecord(Flight *_flight) {flightsRecord.push_back(_flight);}
+
+    void Gate::print() {
+    cout << "Gate Information:" << endl;
+    cout << "ID: " << id << endl;
+    cout << "Location: " << location << endl;
+    cout << "Availability: " << (availability ? "Available" : "Not Available") << endl;
+    cout << "Boarding Hour: " << boardingHour << endl;
+
+    // Imprime la información del vuelo asignado
+    if (flightAssigned != nullptr) {
+        cout << "Flight Assigned Information:" << endl;
+        flightAssigned->print();
+    }
+
+    // Imprime la información de los vuelos registrados
+    cout << "Flights Record Information:" << endl;
+    for (int i = 0; i < flightsRecord.size(); ++i) {
+        cout << "Flight " << i + 1 << ":" << endl;
+        flightsRecord[i]->print();
+    }
+}
