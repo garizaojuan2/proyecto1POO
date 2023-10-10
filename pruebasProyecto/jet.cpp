@@ -35,3 +35,27 @@ vector<string> PrivateJet::getServices() {
 vector<string> PrivateJet::getDestinations() {
     return destinations;
 }
+
+void Jet::print() const {
+    cout << "Jet Information:" << endl;
+    Aircraft::print();
+    if (owner != nullptr) {
+        cout << "Owner Information:" << endl;
+        owner->print();
+    }
+    
+
+    cout << "Services Offered:" << endl;
+    int serviceIndex = 1;
+    for (int i = 0; i < services.size(); ++i) {
+        cout << serviceIndex << ". " << services[i] << endl;
+        ++serviceIndex;
+    }
+
+    cout << "Destinations Offered:" << endl;
+    int destinationIndex = 1;
+    for (int i = 0; i < destinations.size(); ++i) {
+        cout << destinationIndex << ". " << destinations[i] << endl;
+        ++destinationIndex;
+    }
+}
