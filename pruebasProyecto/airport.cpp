@@ -525,6 +525,14 @@ void Airport::printGates() const {
     }
 }
 
+void Airport::printPassengers() const {
+    cout << "Passengers Registered:" << endl;
+    for (int i = 0; i < passengersRegistered.size(); ++i) {
+        Passenger* passenger = passengersRegistered[i];
+        cout << "Passenger " << i + 1 << " Information:" << endl;
+        passenger->print();
+    }
+}
 
 
 
