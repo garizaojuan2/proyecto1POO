@@ -52,6 +52,9 @@ class Airport {
         void printAirplanes();
         void printHelicopters();
         void printPrivateJets();
+        void printFlights();
+        void printPassengers();
+        void printGates();
         
     
 
