@@ -77,9 +77,7 @@ void Aircraft::print() const {
     cout << "Availability: " << (availability ? "Available" : "Not Available") << endl;
 
     if (flightAssociated) {
-        cout << "Flight Associated:" << endl;
-        cout << "Flight Number: " << flightAssociated->getFlightNumber() << endl;
-        cout << "Flight Details:" << endl;
+        cout << "Flight Associated Details:" << endl;
         flightAssociated->print();
     }
 
