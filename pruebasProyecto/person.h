@@ -35,6 +35,7 @@ public:
     int getPhoneNumber();
     string getEmail();
 
+
     // Métodos set privados
     void setId(int _id);
     void setName(const string& _name);
@@ -44,6 +45,8 @@ public:
     void setAddress(const string& _address);
     void setPhoneNumber(int _phoneNumber);
     void setEmail(const string& _email);
+
+    virtual void print() const;
 
 };
 
