@@ -29,7 +29,7 @@ void Person::setGender(const string& _gender) { gender = _gender; }
 void Person::setAddress(const string& _address) { address = _address; }
 void Person::setPhoneNumber(int _phoneNumber) { phoneNumber = _phoneNumber; }
 void Person::setEmail(const string& _email) { email = _email; }
-virtual Person::void print() const {
+virtual void Person::print() const {
         cout << "ID: " << id << endl;
         cout << "Name: " << name << " " << lastName << endl;
         cout << "Birthdate: " << birthdate << endl;
