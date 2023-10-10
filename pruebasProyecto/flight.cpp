@@ -46,3 +46,41 @@ Flight::Flight(){}
                availableSeats = (*_airplane).getCapacity();
     }
     void Flight::setAvailableSeats(int num) {availableSeats = num;}
+    
+    void Flight::print() {
+    cout << "Flight Information:" << endl;
+    cout << "ID: " << id << endl;
+    cout << "Date: " << date << endl;
+    cout << "Origin: " << origin << endl;
+    cout << "Destination: " << destination << endl;
+
+    // Imprime la información de la clase Gate
+    if (boardingGate != nullptr) {
+        cout << "Boarding Gate Information:" << endl;
+        boardingGate->print();
+    }
+
+    // Imprime la información de los trabajadores asignados
+    cout << "Assigned Crew Information:" << endl;
+    for (int i = 0; i < assignedCrew.size(); ++i) {
+        cout << "Worker " << i + 1 << ":" << endl;
+        assignedCrew[i]->print();
+    }
+
+    // Imprime la información de los pasajeros registrados
+    cout << "Passengers Registered Information:" << endl;
+    int passengerIndex = 1;
+    for (map<int, Passenger*>::iterator it = passengersRegistered.begin(); it != passengersRegistered.end(); ++it) {
+        cout << "Passenger " << passengerIndex << ":" << endl;
+        it->second->print();
+        ++passengerIndex;
+    }
+
+    // Imprime la información del avión
+    if (airplane != nullptr) {
+        cout << "Airplane Information:" << endl;
+        airplane->print();
+    }
+
+    cout << "Available Seats: " << availableSeats << endl;
+}
