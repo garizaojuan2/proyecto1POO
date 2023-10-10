@@ -68,16 +68,54 @@ void crearObjetos(){
 
 
 }
+void consultar(){
+    cout << "**** Consultar objetos ****" << endl;
+    cout << "1. Aviones" << endl;
+    cout << "2. Helicopteros" << endl;
+    cout << "3. Jets privados" << endl;
+    cout << "4. Salir" << endl;
+    cout << "****************************" << endl;
+    int op;
+    cout << "Elija una opcion > ";
+    cin >> op;
+    cout << endl;
+    switch (op)
+    {
+    case 1:
+        Airport::getInstance().printAirplanes();    
+        op = 4;
+        break;
+
+    case 2:
+        Airport::getInstance().printHelicopters();
+        op = 4;
+        break;
+
+    case 3:
+        Airport::getInstance().printPrivateJets();
+        op = 4;
+        break;
+    default:
+        cout << "Opcion invalida, digite una nueva opcion: ";
+        cin >> op;
+        cout << endl;
+        break;
+    }while(op!=4);
+    cout << "Volviendo al menu principal..." << endl;
+    cout << "Su objeto ha sido modificado con exito" << endl;
+
+}
 
 void menu(){
 
     cout << "**** Menu de Opciones ****" << endl;
     cout << "1. Crear objetos" << endl;
     cout << "2. Reservar vuelo" << endl;
-    cout << "3. Ingresar, consultar y modificar " << endl;
-    cout << "4. Asignacion de vuelos " << endl;
-    cout << "5. Asignacion de puertas de embarque " << endl;
-    cout << "6. Salir" << endl;
+    cout << "3. Consultar objetos" << endl;
+    cout << "4. Modificar objetos" << endl;
+    cout << "5. Asignacion de vuelos " << endl;
+    cout << "6. Asignacion de puertas de embarque " << endl;
+    cout << "7. Salir" << endl;
     cout << "****************************" << endl;
 
     int op;
@@ -143,11 +181,11 @@ int main(){
             break;
 
         case 3:
-            /* code */
+           consultar();
             break;
         
         case 4:
-            /* code */
+            modificar();
             break;
 
         case 5:
