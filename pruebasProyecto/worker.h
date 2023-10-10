@@ -28,6 +28,8 @@ public:
     void setPosition(const string& _position);
     void setYearsOfExperience(int _yearsOfExperience);
     void setMaxDailyHours(int _maxDailyHours);
+
+     void print() const override;
 };
 
 #endif
