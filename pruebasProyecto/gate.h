@@ -37,6 +37,7 @@ public:
     void setAvailability(bool _availability);
     void setBoardingHour(const string& _boardingHour);
     void addFlightsRecord(Flight *_flight);
+    void print() const;
 };
 
 #endif
