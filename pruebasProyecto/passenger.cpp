@@ -1,5 +1,4 @@
 #include "passenger.h"
-
 using namespace std;
 
 // Constructor de la clase Passenger que llama al constructor de Person
@@ -8,22 +7,18 @@ Passenger::Passenger(int _id, const string& _name, const string& _lastName,
     const string& _address, int _phoneNumber, const string& _email,
     const string& _nationality, int _baggageAmount, const string& _medicalInformation)
     : Person(_id, _name, _lastName, _birthdate, _gender, _address, _phoneNumber, _email),
-   nationality(_nationality), baggageAmount(_baggageAmount), medicalInformation(_medicalInformation) {
+      nationality(_nationality), baggageAmount(_baggageAmount), medicalInformation(_medicalInformation) {
 }
+
+// Constructor vacío de la clase Passenger
 Passenger::Passenger(){}
-// Métodos get de Passenger
+
+// Métodos get de Passenger para obtener los valores de los atributos
 string Passenger::getNationality()  { return nationality; }
 int Passenger::getBaggageAmount()  { return baggageAmount; }
 string Passenger::getMedicalInformation()  { return medicalInformation; }
 
-// Métodos set de Passenger
+// Métodos set de Passenger para modificar los valores de los atributos
 void Passenger::setNationality(const string& _nationality) { nationality = _nationality; }
 void Passenger::setBaggageAmount(int _baggageAmount) { baggageAmount = _baggageAmount; }
 void Passenger::setMedicalInformation(const string& _medicalInformation) { medicalInformation = _medicalInformation; }
-
-void Passenger::print() const override {
-        Person::print();
-        cout << "Nationality: " << nationality << endl;
-        cout << "Baggage Amount: " << baggageAmount << endl;
-        cout << "Medical Information: " << medicalInformation << endl;
-}

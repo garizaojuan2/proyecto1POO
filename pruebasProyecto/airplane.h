@@ -28,8 +28,6 @@ using namespace std;
         void setMaxAltitude(int newMaxAltitude);
         void setEngineAmount(int newEngineAmount);
         void setCategory(string newCategory);
-
-        void print() const override;
     };
 
 

@@ -55,7 +55,7 @@ void ControlTower::assignBoardingGate(Flight *flight){
         gates[i]->setAvailability(false);
         gates[i]->addFlightsRecord(flight);
         flight->setBoardingGate(gates[i]);
-        cout << "El vuelo " << flight->getId() << " se ha asociado a la puerta: Gate " << this->gates[i]->getId();
+        cout << "El vuelo " << flight->getId() << " se ha asociado a la puerta: Gate " << this->gates[i]->getId();  
     }
     else{
         cout << "No hay puertas de embarque disponibles" << endl;

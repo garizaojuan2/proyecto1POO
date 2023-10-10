@@ -30,8 +30,6 @@ public:
     void setNationality(const string& _nationality);
     void setBaggageAmount(int _baggageAmount);
     void setMedicalInformation(const string& _medicalInformation);
-
-    void print() const override;
 };
 
 #endif

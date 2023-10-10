@@ -3,14 +3,6 @@
 using namespace std;
 
 // Obtener la instancia única del aeropuerto
-
-/*
-Airport& Airport::getInstance() {
-    return instance;
-}
-*/
-
-//Airport Airport::instance;
 void Airport::addAirplane(Airplane* _plane){
     airplaneRegister.push_back(_plane);
 }
@@ -72,83 +64,105 @@ void Airport:: buyFlight(string destination, string date,Passenger* _passenger){
     else
         cout << "El vuelo no existe para ese destino o fecha" << endl;
 }
-
-void Airport::createAirplane(){
+void Airport::createAirplane() {
     Airplane* airplane = new Airplane;
 
-    string temp;
+    try {
+        string temp;
 
-    cout << "Digite la marca: ";
-    cin >> temp;
-    airplane->setBrand(temp);
-    cout << endl;
+        cout << "Digite la marca: ";
+        cin >> temp;
+        airplane->setBrand(temp);
+        cout << endl;
 
-    cout << "Digite el modelo: ";
-    cin >> temp;
-    airplane->setModel(temp);
-    cout << endl;
+        cout << "Digite el modelo: ";
+        cin >> temp;
+        airplane->setModel(temp);
+        cout << endl;
 
-    cout << "Digite el ID: ";
-    cin >> temp;
-    airplane->setId(temp);
-    cout << endl;
+        cout << "Digite el ID: ";
+        cin >> temp;
+        airplane->setId(temp);
+        cout << endl;
 
-    cout << "Digite la capacidad: ";
-    int capacity;
-    cin >> capacity;
-    airplane->setCapacity(capacity);
-    cout << endl;
+        cout << "Digite la capacidad: ";
+        int capacity;
+        cin >> capacity;
+        if (cin.fail()) {
+            throw invalid_argument("La capacidad debe ser un numero entero.");
+        }
+        airplane->setCapacity(capacity);
+        cout << endl;
 
-    cout << "Digite la velocidad maxima: ";
-    int maxSpeed;
-    cin >> maxSpeed;
-    airplane->setMaxSpeed(maxSpeed);
-    cout << endl;
+        cout << "Digite la velocidad maxima: ";
+        int maxSpeed;
+        cin >> maxSpeed;
+        if (cin.fail()) {
+            throw invalid_argument("La velocidad maxima debe ser un numero entero.");
+        }
+        airplane->setMaxSpeed(maxSpeed);
+        cout << endl;
 
-    cout << "Digite la autonomia (distancia maxima que la aeronave puede recorrer sin recargar combustible): ";
-    int autonomy;
-    cin >> autonomy;
-    airplane->setAutonomy(autonomy);
-    cout << endl;
+        cout << "Digite la autonomia (distancia maxima que la aeronave puede recorrer sin recargar combustible): ";
+        int autonomy;
+        cin >> autonomy;
+        if (cin.fail()) {
+            throw invalid_argument("La autonomia debe ser un número entero.");
+        }
+        airplane->setAutonomy(autonomy);
+        cout << endl;
 
-    cout << "Digite el ano: ";
-    int year;
-    cin >> year;
-    airplane->setYear(year);
-    cout << endl;
+        cout << "Digite el ano: ";
+        int year;
+        cin >> year;
+        if (cin.fail()) {
+            throw invalid_argument("El ano debe ser un numero entero.");
+        }
+        airplane->setYear(year);
+        cout << endl;
 
-    cout << "Digite la condicion: ";
-    cin >> temp;
-    airplane->setCondition(temp);
-    cout << endl;
+        cout << "Digite la condicion: ";
+        cin >> temp;
+        airplane->setCondition(temp);
+        cout << endl;
 
-    cout << "Digite la ubicacion: ";
-    cin >> temp;
-    airplane->setUbication(temp);
-    cout << endl;
+        cout << "Digite la ubicacion: ";
+        cin >> temp;
+        airplane->setUbication(temp);
+        cout << endl;
 
-    cout << "Digite la altitud maxima: ";
-    int maxAltitude;
-    cin >> maxAltitude;
-    airplane->setMaxAltitude(maxAltitude);
-    cout << endl;
+        cout << "Digite la altitud maxima: ";
+        int maxAltitude;
+        cin >> maxAltitude;
+        if (cin.fail()) {
+            throw invalid_argument("La altitud maxima debe ser un numero entero.");
+        }
+        airplane->setMaxAltitude(maxAltitude);
+        cout << endl;
 
-    cout << "Digite la cantidad de motores: ";
-    int engineAmount;
-    cin >> engineAmount;
-    airplane->setEngineAmount(engineAmount);
-    cout << endl;
+        cout << "Digite la cantidad de motores: ";
+        int engineAmount;
+        cin >> engineAmount;
+        if (cin.fail()) {
+            throw invalid_argument("La cantidad de motores debe ser un numero entero.");
+        }
+        airplane->setEngineAmount(engineAmount);
+        cout << endl;
 
-    cout << "Digite la categoria: ";
-    cin >> temp;
-    airplane->setCategory(temp);
-    cout << endl;
+        cout << "Digite la categoria: ";
+        cin >> temp;
+        airplane->setCategory(temp);
+        cout << endl;
 
-    airplane->setAvailability(true);
+        airplane->setAvailability(true);
 
-    Airport::getInstance().addAirplane(airplane);
+        Airport::getInstance().addAirplane(airplane);
+    }
+    catch (const invalid_argument& e) {
+        cerr << "Error: " << e.what() << endl;
+        delete airplane;  // Liberar la memoria del avión en caso de error.
+    }
 }
-
 void Airport::createFlight(){
     Flight* flight = new Flight;
 
@@ -481,61 +495,4 @@ Passenger* Airport::getPassenger(int n){
 int Airport::getPassengersRegisterSize(){
     return passengersRegistered.size();
 }
-
-void Airport::printAirplanes() const {
-    cout << "Airplanes Registered:" << endl;
-    for (int i = 0; i < airplaneRegister.size(); ++i) {
-        cout << "Airplane " << i + 1 << ":" << endl;
-        airplaneRegister[i]->print();
-    }
-}
-
-void Airport::printHelicopters() const {
-    cout << "Helicopters Registered:" << endl;
-    for (int i = 0; i < helicopterRegister.size(); ++i) {
-        cout << "Helicopter " << i + 1 << ":" << endl;
-        helicopterRegister[i]->print();
-    }
-}
-
-void Airport::printPrivateJets() const {
-    cout << "Private Jets Registered:" << endl;
-    for (int i = 0; i < privateJetRegister.size(); ++i) {
-        cout << "Private Jet " << i + 1 << ":" << endl;
-        privateJetRegister[i]->print();
-    }
-}
-
-void Airport::printFlights() const {
-    cout << "Flights Registered:" << endl;
-    for (map<pair<string, string>, Flight*>::const_iterator it = flightsRegister.begin(); it != flightsRegister.end(); ++it) {
-        const pair<string, string>& flightKey = it->first;
-        Flight* flight = it->second;
-
-        cout << "Flight from " << flightKey.first << " to " << flightKey.second << ":" << endl;
-        flight->print();
-    }
-}
-
-void Airport::printGates() const {
-    cout << "Gates Registered:" << endl;
-    for (int i = 0; i < gatesRegister.size(); ++i) {
-        cout << "Gate " << i + 1 << ":" << endl;
-        gatesRegister[i]->print();
-    }
-}
-
-void Airport::printPassengers() const {
-    cout << "Passengers Registered:" << endl;
-    for (int i = 0; i < passengersRegistered.size(); ++i) {
-        Passenger* passenger = passengersRegistered[i];
-        cout << "Passenger " << i + 1 << " Information:" << endl;
-        passenger->print();
-    }
-}
-
-
-
-
-
 

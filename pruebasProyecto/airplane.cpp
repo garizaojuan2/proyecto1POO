@@ -18,11 +18,3 @@ string Airplane::getCategory()  { return category; }
 void Airplane::setMaxAltitude(int newMaxAltitude) { maxAltitude = newMaxAltitude; }
 void Airplane::setEngineAmount(int newEngineAmount) { engineAmount = newEngineAmount; }
 void Airplane::setCategory(string newCategory) { category = newCategory; }
-
-void Airplane::print() const {
-    cout << "Airplane Information:" << endl;
-    Aircraft::print();
-    cout << "Max Altitude: " << maxAltitude << " meters" << endl;
-    cout << "Engine Amount: " << engineAmount << endl;
-    cout << "Category: " << category << endl;
-}

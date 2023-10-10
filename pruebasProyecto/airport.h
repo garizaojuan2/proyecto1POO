@@ -49,12 +49,7 @@ class Airport {
         void assignFlight(Flight *vuelo);
         Passenger* getPassenger(int n);
         int getPassengersRegisterSize();
-        void printAirplanes const();
-        void printHelicopters const();
-        void printPrivateJets const();
-        void printFlights const();
-        void printPassengers const();
-        void printGates const();
+
         
     
 
