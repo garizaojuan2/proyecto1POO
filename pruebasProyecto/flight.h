@@ -65,7 +65,7 @@ public:
 
     //funcionalidades
     void embark();
-    
+    void print() const;
 };
 
 #endif
