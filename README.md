@@ -34,12 +34,5 @@ La opción "Salir" cerrará el programa y restablecerá el estado del aeropuerto
 
 **Nota**: Asegúrate de proporcionar datos válidos en cada paso para evitar errores en el programa.
 
-## Agradecimientos
-
-Agradecemos tu interés en el aeropuerto Alfonso Bonilla Aragón. Si tienes alguna pregunta o necesitas asistencia, no dudes en ponerte en contacto con nosotros.
-
-## Términos y Condiciones
-
-Este software se proporciona tal cual, sin garantía de ningún tipo. Utiliza este software bajo tu propio riesgo. Consulta los términos de uso y la licencia incluida en este repositorio para obtener más información.
 
 ¡Disfruta de tu experiencia en el aeropuerto Alfonso Bonilla Aragón!
