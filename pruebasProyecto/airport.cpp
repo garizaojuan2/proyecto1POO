@@ -496,3 +496,58 @@ int Airport::getPassengersRegisterSize(){
     return passengersRegistered.size();
 }
 
+/*
+void Airport::printAirplanes()  {
+    cout << "Airplanes Registered:" << endl;
+    for (int i = 0; i < airplaneRegister.size(); ++i) {
+        cout << "Airplane " << i + 1 << ":" << endl;
+        airplaneRegister[i]->print();
+    }
+}
+
+void Airport::printHelicopters()  {
+    cout << "Helicopters Registered:" << endl;
+    for (int i = 0; i < helicopterRegister.size(); ++i) {
+        cout << "Helicopter " << i + 1 << ":" << endl;
+        helicopterRegister[i]->print();
+    }
+}
+
+void Airport::printPrivateJets()  {
+    cout << "Private Jets Registered:" << endl;
+    for (int i = 0; i < privateJetRegister.size(); ++i) {
+        cout << "Private Jet " << i + 1 << ":" << endl;
+        privateJetRegister[i]->print();
+    }
+}
+
+void Airport::printFlights()  {
+    cout << "Flights Registered:" << endl;
+    for (map<pair<string, string>, Flight*>::const_iterator it = flightsRegister.begin(); it != flightsRegister.end(); ++it) {
+        const pair<string, string>& flightKey = it->first;
+        Flight* flight = it->second;
+
+        cout << "Flight from " << flightKey.first << " to " << flightKey.second << ":" << endl;
+        flight->print();
+    }
+}
+
+void Airport::printGates()  {
+    cout << "Gates Registered:" << endl;
+    for (int i = 0; i < gatesRegister.size(); ++i) {
+        cout << "Gate " << i + 1 << ":" << endl;
+        gatesRegister[i]->print();
+    }
+}
+
+void Airport::printPassengers()  {
+    cout << "Passengers Registered:" << endl;
+    for (int i = 0; i < passengersRegistered.size(); ++i) {
+        Passenger* passenger = passengersRegistered[i];
+        cout << "Passenger " << i + 1 << " Information:" << endl;
+        passenger->print();
+    }
+}
+*/
+
+
