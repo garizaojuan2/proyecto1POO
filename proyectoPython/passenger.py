@@ -1,7 +1,7 @@
 from person import Person
 
 class Passenger(Person):
-    def __init__(self, _ident, _name, _lastName, _birthdate, _gender, _address, _phoneNumber, _email, _nationality, _baggageAmount, _medicalInformation):
+    def __init__(self,  _ident = None,  _name = None,  _lastName = None,  _birthdate = None,  _gender = None,  _address = None,  _phoneNumber = None,  _email = None,  _nationality = None,  _baggageAmount = None,  _medicalInformation = None):
         super().__init__(_ident, _name, _lastName, _birthdate, _gender, _address, _phoneNumber, _email)
         self.nationality = _nationality
         self.baggageAmount = _baggageAmount
