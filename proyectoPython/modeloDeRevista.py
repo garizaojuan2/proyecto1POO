@@ -55,6 +55,12 @@ class TodoModel:
             self.vuelo = {}
         else:
             self.vuelo = st.session_state['vuelo']
+            
+        if 'aerolinea' not in st.session_state:
+            st.session_state['aerolinea'] = {}
+            self.airline = {}
+        else:
+            self.airline = st.session_state['aerolinea']
     # C - Create
     def addNewTrabajador(self, id, trabajador):
         self.trabajador[id] = trabajador
@@ -83,6 +89,10 @@ class TodoModel:
     def addNewVuelo(self, id, vuelo):
         self.vuelo[id] = vuelo
         st.session_state['vuelo'] = self.vuelo
+        
+    def addNewAirline(self, id, airline):
+        self.airline[id] = airline
+        st.session_state['aerolinea'] = self.airline
 
     # R - Read
     def getAllTrabajador(self):
@@ -105,11 +115,20 @@ class TodoModel:
     
     def getAllVuelo(self):
         return self.vuelo
+    
+    def getAllAirlines(self):
+        return self.airline
+     # R - Read
+    
 
     # U - Update
     """
     def checkTrabajador(self, trabajadorid):
         self.trabajador[trabajadorid].setState("Completada")
+    
+    def checkAirline(self, airline_id):
+        # Implementar la lógica de actualización según sea necesario
+        pass
 
     def checkAvion(self, avionid):
         self.avion[avionid].setState("Completada")
@@ -148,3 +167,5 @@ class TodoModel:
 
     def removePuertaDeEmbarque(self, puerta_id):
         del self.puerta_de_embarque[puerta_id]
+    def removeAirline(self, airline_id):
+        del self.airline[airline_id]

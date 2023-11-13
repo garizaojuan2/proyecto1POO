@@ -13,6 +13,7 @@ class Aircraft:
         self.availability = availability
         self.flight_associated = None
         self.assigned_flights = []
+        self.state = 'Disponible'
 
     def get_brand(self):
         return self.brand

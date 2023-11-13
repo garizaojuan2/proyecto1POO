@@ -11,7 +11,7 @@ class Person:
         self.email = _email
 
     # Métodos get para obtener los valores de los atributos
-    def getId(self):
+    def get_ident(self):
         return self.ident
 
     def getName(self):

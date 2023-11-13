@@ -1,5 +1,5 @@
 class Flight:
-    def __init__(self, _ident= None,  _date= None,  _origin= None,  _destination= None):
+    def __init__(self, _ident= None,  _date= None,  _origin= None,  _destination= None, _airline = None):
         self.ident = _ident
         self.date = _date
         self.origin = _origin
@@ -9,7 +9,8 @@ class Flight:
         self.passengers_registered = None
         self.airplane = None
         self.available_seats = 0
-
+        self.airline = _airline
+        
     def embark(self):
         ControlTower.get_instance().assign_boarding_gate(self)
 

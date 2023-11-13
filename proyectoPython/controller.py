@@ -24,11 +24,14 @@ class Controller:
         st.session_state['option'] = option
         if option == 'Crear una objeto':
             self.createObjects()
-        """
+        
         elif option == 'Ver los objetos':
-            self.listAllTasks()
+            self.verObjetos()
+        
         elif option == 'Reservar un vuelo':
             self.checkTask()
+            
+        """
         elif option == 'Cambiar estado de vuelo':
             self.removeTask()
         elif option == "Json":
@@ -52,7 +55,12 @@ class Controller:
                 idd = obj.ident
                 self.model.addNewJetPrivado(idd,obj)  
         elif op == 'Vuelo':
-            obj = self.view.create_flight()
+            l = self.model.getAllAirlines()
+            names = []
+            for a in l:
+                names.append(a)
+                
+            obj = self.view.create_flight(names)
             if obj:
                 idd = obj.ident
                 self.model.addNewVuelo(idd,obj)  
@@ -71,8 +79,45 @@ class Controller:
             if obj:
                 idd = obj.ident
                 self.model.addNewTrabajador(idd,obj)  
+                
+        elif op == 'Aerolinea':
+            obj = self.view.create_airline()
+            if obj:
+                idd = obj.ident
+                self.model.addNewAirline(idd,obj)  
             
     
 
+    def verObjetos(self):
+        op = self.view.selectObject()
+        if op =='Avión':
+            aviones = self.model.getAllAvion()   
+            self.view.listAllAirplanes(aviones)  
+                      
+        elif op == 'Helicoptero':
+            helicopteros = self.model.getAllHelicoptero()   
+            self.view.listAllHelicopters(helicopteros)   
             
+        elif op == 'Jet_privado':
+            jets = self.model.getAllJetPrivado()
+            self.view.listAllPrivateJets(jets)  
+                 
+        elif op == 'Vuelo':
+            vuelos = self.model.getAllVuelo() 
+            self.view.listAllFlights(vuelos)    
             
+        elif op == 'Puerta_de_embarque':
+            puertas = self.model.getAllPuertaDeEmbarque()  
+            self.view.listAllGates(puertas)  
+             
+        elif op == 'Pasajero':
+            pasajeros = self.model.getAllPasajero() 
+            self.view.listAllPassengers(pasajeros) 
+               
+        elif op == 'Trabajador':
+            trabajadores = self.model.getAllTrabajador()  
+            self.view.listAllWorkers(trabajadores)   
+            
+        elif op == 'Aerolinea':
+            aerolineas = self.model.getAllAirlines()  
+            self.view.listAllAirlines(aerolineas)  

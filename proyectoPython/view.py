@@ -11,6 +11,8 @@ from jet import PrivateJet
 from passenger import Passenger
 from person import Person
 from worker import Worker
+import pandas as pd
+from airline import Airline
 
 class View:
     def __init__(self):
@@ -22,7 +24,7 @@ class View:
         return option
     
     def selectObject(self):
-        option = st.selectbox('Seleccione la :', ['Avión', 'Helicoptero', 'Jet_privado', 'Vuelo', 'Puerta_de_embarque', 'Pasajero', 'Trabajador'])
+        option = st.selectbox('Seleccione la :', ['Avión', 'Helicoptero', 'Jet_privado', 'Vuelo', 'Puerta_de_embarque', 'Pasajero', 'Trabajador', 'Aerolinea'])
         return option
         
     
@@ -64,12 +66,28 @@ class View:
         else:
             st.warning("Por favor, complete todos los campos requeridos.")
 
+    def create_airline(self):
+        st.header("Creación de airline")
+        
+        ident = st.text_input("ID:")
+        name = st.text_input("Nombre:")
+ 
+        st.button("Crear", type="primary")
+
+        if st.button and ident and name :
+            airl = Airline(
+                ident,
+                name
+            )
+            return airl
+        else:
+            st.warning("Por favor, complete todos los campos requeridos.")
+
     
 
     def create_airplane(self):
         st.header("Creación de Avión")
         
-        # Entradas de texto para las características del avión
         brand = st.text_input("Marca:")
         model = st.text_input("Modelo:")
         ident = st.text_input("ID:")
@@ -275,7 +293,7 @@ class View:
             st.warning("Por favor, complete todos los campos requeridos.")
         
         
-    def create_flight(self):
+    def create_flight(self, names):
         st.header("Creación de vuelo")
         
         # Entradas de texto para las características de la puerta de embarque
@@ -284,7 +302,7 @@ class View:
         origin = st.text_input("Origen:")
         destination = st.text_input("Destino:")
         available_seats = st.text_input("Sillas disponibles:")
-        
+        airl = st.selectbox("Seleccione la aerolinea asociada", names)
         st.button("Crear", type="primary")
 
         if st.button and ident and date and origin and destination and available_seats:
@@ -293,7 +311,8 @@ class View:
                 date,
                 origin,
                 destination,
-                available_seats
+                available_seats,
+                airl
             )
             return flight
 
@@ -332,3 +351,190 @@ class View:
 """
         
 
+    def listAllAirplanes(self, airplanes):
+        st.header("Módulo de visualización de aviones")
+        
+        if not airplanes:
+            st.info("No hay aviones creados hasta el momento", icon="ℹ️")
+            return
+
+        data = {'ID': [], 'Brand': [], 'Model': [], 'Capacity': [], 'Max Speed': [],
+                'Autonomy': [], 'Year': [], 'Condition': [], 'Availability': [],
+                'Max Altitude': [], 'Engine Amount': [], 'Category': []}
+
+        for id, airplane in airplanes.items():
+            data['ID'].append(id)
+            data['Brand'].append(airplane.brand)
+            data['Model'].append(airplane.model)
+            data['Capacity'].append(airplane.capacity)
+            data['Max Speed'].append(airplane.max_speed)
+            data['Autonomy'].append(airplane.autonomy)
+            data['Year'].append(airplane.year)
+            data['Condition'].append(airplane.condition)
+            data['Availability'].append(airplane.availability)
+            data['Max Altitude'].append(airplane.max_altitude)
+            data['Engine Amount'].append(airplane.engine_amount)
+            data['Category'].append(airplane.category)
+
+        st.dataframe(pd.DataFrame(data))
+
+    def listAllGates(self,gates):
+        st.header("Módulo de visualización de puertas de embarque")
+        
+        if not gates:
+            st.info("No hay puertas de embarque creadas hasta el momento", icon="ℹ️")
+            return
+
+        data = {'ID': [], 'Location': [], 'Availability': [], 'Boarding Hour': []}
+
+        for id, gate in gates.items():
+            data['ID'].append(id)
+            data['Location'].append(gate.location)
+            data['Availability'].append(gate.availability)
+            data['Boarding Hour'].append(gate.boarding_hour)
+
+        st.dataframe(pd.DataFrame(data))
+        
+    def listAllHelicopters(self, helicopters):
+        st.header("Módulo de visualización de helicópteros")
+        
+        if not helicopters:
+            st.info("No hay helicópteros creados hasta el momento", icon="ℹ️")
+            return
+
+        data = {'ID': [], 'Brand': [], 'Model': [], 'Capacity': [], 'Max Speed': [],
+                'Autonomy': [], 'Year': [], 'Condition': [], 'Ubication': [], 'Availability': [],
+                'Engine Amount': [], 'Elevation Capacity': [], 'Use': []}
+
+        for id, helicopter in helicopters.items():
+            data['ID'].append(id)
+            data['Brand'].append(helicopter.brand)
+            data['Model'].append(helicopter.model)
+            data['Capacity'].append(helicopter.capacity)
+            data['Max Speed'].append(helicopter.max_speed)
+            data['Autonomy'].append(helicopter.autonomy)
+            data['Year'].append(helicopter.year)
+            data['Condition'].append(helicopter.condition)
+            data['Ubication'].append(helicopter.ubication)
+            data['Availability'].append(helicopter.availability)
+            data['Engine Amount'].append(helicopter.engine_amount)
+            data['Elevation Capacity'].append(helicopter.elevation_capacity)
+            data['Use'].append(helicopter.use)
+
+        st.dataframe(pd.DataFrame(data))
+        
+    def listAllPrivateJets(self,private_jets):
+        st.header("Módulo de visualización de jets privados")
+        
+        if not private_jets:
+            st.info("No hay jets privados creados hasta el momento", icon="ℹ️")
+            return
+
+        data = {'ID': [], 'Brand': [], 'Model': [], 'Capacity': [], 'Max Speed': [],
+                'Autonomy': [], 'Year': [], 'Condition': [], 'Ubication': [], 'Availability': [],
+                'Owner': [], 'Services': [], 'Destinations': []}
+
+        for id, jet in private_jets.items():
+            data['ID'].append(id)
+            data['Brand'].append(jet.brand)
+            data['Model'].append(jet.model)
+            data['Capacity'].append(jet.capacity)
+            data['Max Speed'].append(jet.max_speed)
+            data['Autonomy'].append(jet.autonomy)
+            data['Year'].append(jet.year)
+            data['Condition'].append(jet.condition)
+            data['Ubication'].append(jet.ubication)
+            data['Availability'].append(jet.availability)
+            data['Owner'].append(jet.owner)
+            data['Services'].append(jet.services)
+            data['Destinations'].append(jet.destinations)
+
+        st.dataframe(pd.DataFrame(data))
+        
+    def listAllPassengers(self, passengers):
+        st.header("Módulo de visualización de pasajeros")
+        
+        if not passengers:
+            st.info("No hay pasajeros creados hasta el momento", icon="ℹ️")
+            return
+
+        data = {'ID': [], 'Name': [], 'Last Name': [], 'Birthdate': [], 'Gender': [],
+                'Address': [], 'Phone Number': [], 'Email': [], 'Nationality': [],
+                'Baggage Amount': [], 'Medical Information': []}
+
+        for id, passenger in passengers.items():
+            data['ID'].append(id)
+            data['Name'].append(passenger.name)
+            data['Last Name'].append(passenger.lastName)
+            data['Birthdate'].append(passenger.birthdate)
+            data['Gender'].append(passenger.gender)
+            data['Address'].append(passenger.address)
+            data['Phone Number'].append(passenger.phoneNumber)
+            data['Email'].append(passenger.email)
+            data['Nationality'].append(passenger.nationality)
+            data['Baggage Amount'].append(passenger.baggageAmount)
+            data['Medical Information'].append(passenger.medicalInformation)
+
+        st.dataframe(pd.DataFrame(data))
+        
+    def listAllWorkers(self, workers):
+        st.header("Módulo de visualización de trabajadores")
+        
+        if not workers:
+            st.info("No hay trabajadores creados hasta el momento", icon="ℹ️")
+            return
+
+        data = {'ID': [], 'Name': [], 'Last Name': [], 'Birthdate': [], 'Gender': [],
+                'Address': [], 'Phone Number': [], 'Email': [], 'Position': [],
+                'Years of Experience': [], 'Max Daily Hours': []}
+
+        for id, worker in workers.items():
+            data['ID'].append(id)
+            data['Name'].append(worker.name)
+            data['Last Name'].append(worker.last_name)
+            data['Birthdate'].append(worker.birthdate)
+            data['Gender'].append(worker.gender)
+            data['Address'].append(worker.address)
+            data['Phone Number'].append(worker.phone_number)
+            data['Email'].append(worker.email)
+            data['Position'].append(worker.position)
+            data['Years of Experience'].append(worker.yearsOfExperience)
+            data['Max Daily Hours'].append(worker.maxDailyHours)
+
+        st.dataframe(pd.DataFrame(data))
+        
+    def listAllFlights(self,flights):
+        st.header("Módulo de visualización de vuelos")
+        
+        if not flights:
+            st.info("No hay vuelos creados hasta el momento", icon="ℹ️")
+            return
+
+        data = {'ID': [], 'Date': [], 'Origin': [], 'Destination': []}
+
+        for id, flight in flights.items():
+            data['ID'].append(id)
+            if flight.date is not None:
+                data['Date'].append(flight.date)
+            if flight.origin is not None:
+                data['Origin'].append(flight.origin)
+            if flight.destination is not None:
+                data['Destination'].append(flight.destination)
+
+        st.dataframe(pd.DataFrame(data))
+        
+    def listAllAirlines(self, airlines):
+        st.header("Módulo de visualización de aerolíneas")
+        
+        if not airlines:
+            st.info("No hay aerolíneas creadas hasta el momento", icon="ℹ️")
+            return
+
+        data = {'ID': [], 'Name': []}
+
+        for id, airline in airlines.items():
+            data['ID'].append(id)
+            if airline.name is not None:
+                data['Name'].append(airline.name)
+
+        st.dataframe(pd.DataFrame(data))
