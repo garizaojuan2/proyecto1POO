@@ -62,11 +62,13 @@ class Controller:
             tripu = []
             for a in l:
                 names.append(l[a].name)
-            l2 = self.model.getAllCrews()
+            l2 = self.model.getAllTrabajador()
             num = 1
-            for a in l2:
+            total = len(l2)//3 
+            while num < total:
                 cad = f"Tripulación #{num}"
                 tripu.append(cad)
+                num += 1
                 
             obj = self.view.create_flight(names,tripu)
             if obj:
@@ -80,7 +82,7 @@ class Controller:
                         self.view.noHayAvionesDisponibles()
                 else:
                     self.view.noHayAviones()
-                if len(self.model.getAllCrews()) == 0:
+                if total == 0:
                     self.view.noHayTripulaciones()
                     flag2 = False
 
@@ -152,7 +154,7 @@ class Controller:
 
 
     def reservar(self):
-        st.header("Reservacion de vuelos")
+        st.header("Reservación de vuelos")
         l = self.model.getAllPasajero()
         names = []
         for a in l:

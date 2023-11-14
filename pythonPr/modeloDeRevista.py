@@ -64,35 +64,13 @@ class TodoModel:
         if 'crew' not in st.session_state:
             st.session_state['crew'] = {}
             self.crew = {}
-            tripu = []
-            self.crew[1] = tripu
         else:
             self.crew = st.session_state['crew']
         
     # C - Create
     def addNewTrabajador(self, id, trabajador):
         self.trabajador[id] = trabajador
-        st.session_state['trabajador'] = self.trabajador
-        dic = self.crew
-        flag = True
-     
-        i = 1
-        while i < len(dic):
-           
-            if flag:
-                if len(dic[i]) < 3:
-                    self.crew['crew'].append(trabajador)
-                    flag = False
-                    
-        if flag:
-            tripu = []
-            tripu.append(trabajador)
-            self.crew[i + 1] = tripu
-        st.session_state['crew'] = self.crew
-
-
-
-            
+        st.session_state['trabajador'] = self.trabajador         
 
     def addNewAvion(self, id, avion):
         self.avion[id] = avion
