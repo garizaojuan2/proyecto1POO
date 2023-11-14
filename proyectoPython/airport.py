@@ -56,18 +56,6 @@ class Airport:
             flight.set_airplane(self.airplane_register[-1])
 
 
-    def buy_flight(self, destination, date, passenger):
-        flight = self.flights_register.get((destination, date))
-        if flight:
-            seats = flight.get_available_seats()
-            if seats <= 0:
-                print("El vuelo para el destino y fecha seleccionada, no se encuentra disponible")
-            else:
-                print("Su reserva ha sido exitosa")
-                flight.set_available_seats(seats - 1)
-                flight.set_passengers_registered(passenger)
-        else:
-            print("El vuelo no existe para ese destino o fecha")
 
     def get_passenger(self, n):
         return self.passengers_registered[n]

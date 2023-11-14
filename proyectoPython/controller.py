@@ -20,6 +20,7 @@ class Controller:
     
 
     def showMenu(self):
+        
         option = self.view.menu()
         st.session_state['option'] = option
         if option == 'Crear una objeto':
@@ -29,7 +30,7 @@ class Controller:
             self.verObjetos()
         
         elif option == 'Reservar un vuelo':
-            self.checkTask()
+            self.reservar()
             
         """
         elif option == 'Cambiar estado de vuelo':
@@ -58,12 +59,24 @@ class Controller:
             l = self.model.getAllAirlines()
             names = []
             for a in l:
-                names.append(a)
+                names.append(l[a].name)
                 
             obj = self.view.create_flight(names)
             if obj:
-                idd = obj.ident
-                self.model.addNewVuelo(idd,obj)  
+                if len(self.model.getAllAvion()) != 0:
+                    flag = self.assignFlight(obj.ident, obj.origin)
+                    if flag == True:
+                        idd = obj.ident
+                        self.model.addNewVuelo(idd,obj) 
+                         
+                    else:
+                        self.view.noHayAvionesDisponibles()
+                else:
+                    self.view.noHayAviones()
+                
+                torre = ControlTower.get_instance()
+                torre.assign_boarding_gate(obj)
+                
         elif op == 'Puerta_de_embarque':
             obj = self.view.create_gate()
             if obj:
@@ -82,6 +95,7 @@ class Controller:
                 
         elif op == 'Aerolinea':
             obj = self.view.create_airline()
+            
             if obj:
                 idd = obj.ident
                 self.model.addNewAirline(idd,obj)  
@@ -121,3 +135,52 @@ class Controller:
         elif op == 'Aerolinea':
             aerolineas = self.model.getAllAirlines()  
             self.view.listAllAirlines(aerolineas)  
+
+
+    def reservar(self):
+        st.header("Reservacion de vuelos")
+        l = self.model.getAllPasajero()
+        names = []
+        for a in l:
+           names.append(l[a].name)         
+        pasajero = self.view.selectPasajero(names)
+        
+        l = self.model.getAllAirlines()
+        names = []
+        for a in l:
+            names.append(l[a].name)      
+        aerolinea = self.view.selectAerolinea(names)
+        
+        l = self.model.getAllVuelo()
+        names = []
+        for a in l:
+            if l[a].airline == aerolinea:
+                names.append(l[a].ident)
+        vuelo = self.view.selectVuelo(names)
+        
+        b = st.button("Reservar", type="primary")
+        if vuelo and aerolinea and pasajero and b:
+            l = self.model.getAllVuelo()
+            v = l[vuelo]
+            if v.available_seats <= 0:
+                self.view.noHayAsientos()
+            else:
+                self.view.asientosDisponibles(vuelo)
+                num = v.available_seats - 1
+                self.model.updateSeats(vuelo, num)
+                
+    def assignFlight(self,ident,origin):
+        ans = False
+        l = self.model.getAllAvion()
+        for ap in l:
+            if l[ap].assigned_flightsNum < 3 and l[ap].state == "Disponible":
+                ans = True
+                if origin != "Cali" or l[ap].caliOrig == True:
+                    if origin == "Cali":
+                        self.model.updateAvion(l[ap].ident, ident, l[ap].assigned_flightsNum + 1, True)
+                        return ans
+                    else:
+                        self.model.updateAvion(l[ap].ident, ident, l[ap].assigned_flightsNum + 1, False)
+                        return ans
+                
+        return ans

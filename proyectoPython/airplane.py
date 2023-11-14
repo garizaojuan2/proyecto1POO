@@ -1,8 +1,8 @@
 from aircraft import Aircraft
 
 class Airplane(Aircraft):
-    def __init__(self,  brand = None,  model = None,  ident = None,  capacity = None,  max_speed = None,  autonomy = None,  year = None,  condition = None,  availability = None,  max_altitude = None,  engine_amount = None,  category = None):
-        super().__init__(brand, model, ident, capacity, max_speed, autonomy, year, condition, availability)
+    def __init__(self,  brand = None,  model = None,  ident = None,  capacity = None,  max_speed = None,  autonomy = None,  year = None,  condition = None, max_altitude = None,  engine_amount = None,  category = None):
+        super().__init__(brand, model, ident, capacity, max_speed, autonomy, year, condition)
         self.max_altitude = max_altitude
         self.engine_amount = engine_amount
         self.category = category

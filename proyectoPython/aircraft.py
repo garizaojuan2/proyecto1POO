@@ -1,6 +1,6 @@
 
 class Aircraft:
-    def __init__(self,  brand = None,  model = None,  ident = None,  capacity = None,  max_speed = None,  autonomy = None,  year = None,  condition = None,  availability = None):
+    def __init__(self,  brand = None,  model = None,  ident = None,  capacity = None,  max_speed = None,  autonomy = None,  year = None,  condition = None):
         self.brand = brand
         self.model = model
         self.ident = ident
@@ -10,10 +10,11 @@ class Aircraft:
         self.year = year
         self.condition = condition
         self.ubication = None
-        self.availability = availability
         self.flight_associated = None
         self.assigned_flights = []
-        self.state = 'Disponible'
+        self.assigned_flightsNum = 0
+        self.caliOrig = False
+        self.state = "Disponible"
 
     def get_brand(self):
         return self.brand
@@ -42,8 +43,8 @@ class Aircraft:
     def get_ubication(self):
         return self.ubication
 
-    def is_available(self):
-        return self.availability
+    def get_state(self):
+        return self.state
 
     def get_flight_associated(self):
         return self.flight_associated
@@ -78,11 +79,19 @@ class Aircraft:
     def set_ubication(self, ubication):
         self.ubication = ubication
 
-    def set_availability(self, availability):
-        self.availability = availability
+    def set_state(self, _state):
+        self.state = _state
 
     def set_flight_associated(self, flight_associated):
         self.flight_associated = flight_associated
+    
+    def setAssociatedNum(self,num):
+        self.assigned_flightsNum = num
+        
+    def setCaliOrig(self, b):
+        self.caliOrig = b
+        
+    
 
     def take_off(self):
         ControlTower.get_instance().aircraft_take_off(self)

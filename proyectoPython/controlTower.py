@@ -1,9 +1,9 @@
-#from aircraft import Aircraft
-
+from modeloDeRevista import TodoModel
 class ControlTower:
     def __init__(self):
         self.aircrafts = []
         self.gates = []
+        self.model = TodoModel()
 
     @classmethod
     def get_instance(cls):
@@ -41,16 +41,17 @@ class ControlTower:
 
     def assign_boarding_gate(self, flight):
         available_gate = None
-        for gate in self.gates:
-            if gate.is_available():
+        l = self.model.getAllPuertaDeEmbarque()
+        for gate in l:
+            if l[gate].is_available():
                 available_gate = gate
                 break
 
         if available_gate is not None:
-            available_gate.set_flight_assigned(flight)
-            available_gate.set_availability(False)
-            available_gate.add_flights_record(flight)
-            flight.set_boarding_gate(available_gate)
+            self.model.puerta_de_embarque[gate].set_flight_assigned(flight)
+            self.model.puerta_de_embarque[gate].set_availability(False)
+            self.model.puerta_de_embarque[gate].add_flights_record(flight)
+            self.model.vuelo[flight].set_boarding_gate(available_gate)
             print(f"El vuelo {flight.get_ident()} se ha asociado a la puerta: Gate {available_gate.get_ident()}")
         else:
             print("No hay puertas de embarque disponibles")

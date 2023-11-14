@@ -1,14 +1,14 @@
 class Flight:
-    def __init__(self, _ident= None,  _date= None,  _origin= None,  _destination= None, _airline = None):
+    def __init__(self, _ident= None,  _date= None,  _origin= None,  _destination= None, _seats = None, _airline = None):
         self.ident = _ident
         self.date = _date
         self.origin = _origin
         self.destination = _destination
-        self.assigned_crew = None
+        self.assigned_crew = []
         self.boarding_gate = None
         self.passengers_registered = None
         self.airplane = None
-        self.available_seats = 0
+        self.available_seats = _seats
         self.airline = _airline
         
     def embark(self):

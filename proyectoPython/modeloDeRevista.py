@@ -1,7 +1,7 @@
 from aircraft import Aircraft
 from airplane import Airplane
 from airport import Airport
-from controlTower import ControlTower
+#from controlTower import ControlTower
 from flight import Flight
 from gate import Gate
 from helicopter import Helicopter
@@ -122,6 +122,17 @@ class TodoModel:
     
 
     # U - Update
+    
+    def updateSeats(self, ident, num):
+        self.vuelo[ident].set_available_seats(num)
+    
+    def updateAvion(self,ident,fA, afn, cO):
+        self.avion[ident].set_flight_associated(fA)
+        self.avion[ident].add_flight(fA)
+        self.avion[ident].setAssociatedNum(afn)
+        self.avion[ident].setCaliOrig(cO)
+        
+        
     """
     def checkTrabajador(self, trabajadorid):
         self.trabajador[trabajadorid].setState("Completada")
@@ -145,8 +156,7 @@ class TodoModel:
     def checkPuertaDeEmbarque(self, puerta_id):
         self.puerta_de_embarque[puerta_id].setState("Completada")
         
-    def checkVuelo(self, puerta_id):
-        self.puerta_de_embarque[puerta_id].setState("Completada")
+    
     """
     
     # D - Delete

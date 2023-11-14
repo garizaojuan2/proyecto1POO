@@ -20,7 +20,7 @@ class View:
         
     def menu(self):
         st.header("Menú de opciones")
-        option = st.selectbox('Seleccione la operación que quiere realizar:', ['Crear una objeto', 'Ver los objetos', 'Reservar', 'Funciones de la torre de control', 'Json'])
+        option = st.selectbox('Seleccione la operación que quiere realizar:', ['Crear una objeto', 'Ver los objetos', 'Reservar un vuelo', 'Funciones de la torre de control', 'Json'])
         return option
     
     def selectObject(self):
@@ -32,19 +32,19 @@ class View:
         st.header("Creación de Trabajador")
         
         # Entradas de texto para las características del trabajador
-        ident = st.text_input("ID:")
-        name = st.text_input("Nombre:")
-        last_name = st.text_input("Apellido:")
+        ident = st.text_input("ID:", value=None)
+        name = st.text_input("Nombre:", value=None)
+        last_name = st.text_input("Apellido:", value=None)
         birthdate = st.date_input("Fecha de nacimiento", value=None)
         gender = st.selectbox(
         'Genero',
         ('Hombre', 'Mujer', 'Otro'))
-        address = st.text_input("Dirección:")
-        phone_number = st.text_input("Número de teléfono:")
-        email = st.text_input("Correo electrónico:")
-        position = st.text_input("Posición:")
-        years_of_experience = st.text_input("Años de experiencia:")
-        max_daily_hours = st.text_input("Máximo de horas diarias:")
+        address = st.text_input("Dirección:", value=None)
+        phone_number = st.text_input("Número de teléfono:", value=None)
+        email = st.text_input("Correo electrónico:", value=None)
+        position = st.text_input("Posición:", value=None)
+        years_of_experience = st.text_input("Años de experiencia:", value=None)
+        max_daily_hours = st.text_input("Máximo de horas diarias:", value=None)
         
         st.button("Crear", type="primary")
 
@@ -69,8 +69,8 @@ class View:
     def create_airline(self):
         st.header("Creación de airline")
         
-        ident = st.text_input("ID:")
-        name = st.text_input("Nombre:")
+        ident = st.text_input("ID:", value=None)
+        name = st.text_input("Nombre:",value=None)
  
         st.button("Crear", type="primary")
 
@@ -83,27 +83,24 @@ class View:
         else:
             st.warning("Por favor, complete todos los campos requeridos.")
 
-    
-
     def create_airplane(self):
         st.header("Creación de Avión")
         
-        brand = st.text_input("Marca:")
-        model = st.text_input("Modelo:")
-        ident = st.text_input("ID:")
-        capacity = st.text_input("Capacidad:")
-        max_speed = st.text_input("Velocidad Máxima:")
-        autonomy = st.text_input("Autonomía:")
-        year = st.text_input("Año:")
-        condition = st.text_input("Condición:")
-        availability = st.text_input("Disponibilidad:")
-        max_altitude = st.text_input("Altitud Máxima:")
-        engine_amount = st.text_input("Cantidad de Motores:")
-        category = st.text_input("Categoría:")
+        brand = st.text_input("Marca:", value=None)
+        model = st.text_input("Modelo:", value=None)
+        ident = st.text_input("ID:", value=None)
+        capacity = st.text_input("Capacidad:", value=None)
+        max_speed = st.text_input("Velocidad Máxima:", value=None)
+        autonomy = st.text_input("Autonomía:", value=None)
+        year = st.text_input("Año:", value=None)
+        condition = st.text_input("Condición:", value=None)
+        max_altitude = st.text_input("Altitud Máxima:", value=None)
+        engine_amount = st.text_input("Cantidad de Motores:", value=None)
+        category = st.text_input("Categoría:", value=None)
 
         st.button("Crear", type="primary")
         
-        if st.button and brand and model and ident and capacity and max_speed and autonomy and year and condition  and availability:
+        if st.button and brand and model and ident and capacity and max_speed and autonomy and year and condition:
             airplane = Airplane(
                 brand,
                 model,
@@ -113,7 +110,6 @@ class View:
                 autonomy,
                 year,
                 condition,
-                availability,
                 max_altitude,
                 engine_amount,
                 category
@@ -128,18 +124,18 @@ class View:
         st.header("Creación de Helicóptero")
         
         # Entradas de texto para las características del helicóptero
-        brand = st.text_input("Marca:")
-        model = st.text_input("Modelo:")
-        ident = st.text_input("ID:")
-        capacity = st.text_input("Capacidad:")
-        max_speed = st.text_input("Velocidad Máxima:")
-        autonomy = st.text_input("Autonomía:")
-        year = st.text_input("Año:")
-        condition = st.text_input("Condición:")
-        availability = st.text_input("Disponibilidad:")
-        engine_amount = st.text_input("Cantidad de Motores:")
-        elevation_capacity = st.text_input("Capacidad de Elevación:")
-        use = st.text_input("Uso:")
+        brand = st.text_input("Marca:", value=None)
+        model = st.text_input("Modelo:", value=None)
+        ident = st.text_input("ID:", value=None)
+        capacity = st.text_input("Capacidad:", value=None)
+        max_speed = st.text_input("Velocidad Máxima:", value=None)
+        autonomy = st.text_input("Autonomía:", value=None)
+        year = st.text_input("Año:", value=None)
+        condition = st.text_input("Condición:", value=None)
+        availability = st.text_input("Disponibilidad:", value=None)
+        engine_amount = st.text_input("Cantidad de Motores:", value=None)
+        elevation_capacity = st.text_input("Capacidad de Elevación:", value=None)
+        use = st.text_input("Uso:", value=None)
         
         st.button("Crear", type="primary")
 
@@ -163,24 +159,23 @@ class View:
 
         else:
             st.warning("Por favor, complete todos los campos requeridos.")
-            
-            
+                  
     def create_jet(self):
         st.header("Creación de Aeronave Personalizada")
         
         # Entradas de texto para las características de la aeronave personalizada
-        brand = st.text_input("Marca:")
-        model = st.text_input("Modelo:")
+        brand = st.text_input("Marca:", value=None)
+        model = st.text_input("Modelo:", value=None)
         ident = st.text_input("ID:")
-        capacity = st.text_input("Capacidad:")
-        max_speed = st.text_input("Velocidad Máxima:")
-        autonomy = st.text_input("Autonomía:")
-        year = st.text_input("Año:")
-        condition = st.text_input("Condición:")
-        availability = st.text_input("Disponibilidad:")
-        owner = st.text_input("Propietario:")
-        services = st.text_input("Servicios (separe los servicios por espacios)")
-        destinations = st.text_input("Destinos (separe los detinos por espacios)")
+        capacity = st.text_input("Capacidad:", value=None)
+        max_speed = st.text_input("Velocidad Máxima:", value=None)
+        autonomy = st.text_input("Autonomía:", value=None)
+        year = st.text_input("Año:", value=None)
+        condition = st.text_input("Condición:", value=None)
+        availability = st.text_input("Disponibilidad:", value=None)
+        owner = st.text_input("Propietario:", value=None)
+        services = st.text_input("Servicios (separe los servicios por espacios)", value=None)
+        destinations = st.text_input("Destinos (separe los detinos por espacios)", value=None)
         lServices = []
         lDestinations = []
         lServices = services.split()
@@ -206,8 +201,7 @@ class View:
             return jet
         else:
             st.warning("Por favor, complete todos los campos requeridos.")
-            
-            
+                   
     def create_passenger(self):
         st.header("Creación de Pasajero")
         
@@ -233,19 +227,19 @@ class View:
         "Vanuatu", "Vaticano", "Venezuela", "Vietnam", "Yemen", "Yibuti", "Zambia", "Zimbabue"]
         
         # Entradas de texto para las características del pasajero
-        ident = st.text_input("ID:")
-        name = st.text_input("Nombre:")
-        last_name = st.text_input("Apellido:")
+        ident = st.text_input("ID:", value=None)
+        name = st.text_input("Nombre:", value=None)
+        last_name = st.text_input("Apellido:", value=None)
         birthdate = st.date_input("Fecha de nacimiento", value=None)
         gender = st.selectbox(
         'Genero',
         ('Hombre', 'Mujer', 'Otro'))
-        address = st.text_input("Dirección:")
-        phone_number = st.text_input("Número de teléfono:")
-        email = st.text_input("Correo electrónico:")
+        address = st.text_input("Dirección:", value=None)
+        phone_number = st.text_input("Número de teléfono:", value=None)
+        email = st.text_input("Correo electrónico:", value=None)
         nationality = option = st.selectbox("Selecciona tu nacionalidad", paises)
-        baggage_amount = st.text_input("Cantidad de equipaje:")
-        medical_information = st.text_input("Información médica:")
+        baggage_amount = st.text_input("Cantidad de equipaje:", value=None)
+        medical_information = st.text_input("Información médica:", value=None)
         
         st.button("Crear", type="primary")
 
@@ -267,17 +261,16 @@ class View:
             return passenger
 
         else:
-            st.warning("Por favor, complete todos los campos requeridos.")
-            
+            st.warning("Por favor, complete todos los campos requeridos.")    
             
     def create_gate(self):
         st.header("Creación de Puerta de Embarque")
         
         # Entradas de texto para las características de la puerta de embarque
-        ident = st.text_input("ID:")
-        location = st.text_input("Ubicación:")
-        availability = st.text_input("Disponibilidad:")
-        boarding_hour = st.text_input("Hora de abordaje:")
+        ident = st.text_input("ID:", value=None)
+        location = st.text_input("Ubicación:", value=None)
+        availability = st.text_input("Disponibilidad:", value=None)
+        boarding_hour = st.text_input("Hora de abordaje:", value=None)
         
         st.button("Crear", type="primary")
 
@@ -296,22 +289,21 @@ class View:
     def create_flight(self, names):
         st.header("Creación de vuelo")
         
-        # Entradas de texto para las características de la puerta de embarque
-        ident = st.text_input("ID:")
-        date = st.date_input("Fecha:")
-        origin = st.text_input("Origen:")
-        destination = st.text_input("Destino:")
-        available_seats = st.text_input("Sillas disponibles:")
+        ident = st.text_input("ID:", value=None)
+        date = st.date_input("Fecha:", value=None)
+        origin = st.text_input("Origen:", value=None)
+        destination = st.text_input("Destino:", value=None)
+        available_seats = st.text_input("Sillas disponibles:", value=None)
         airl = st.selectbox("Seleccione la aerolinea asociada", names)
         st.button("Crear", type="primary")
 
-        if st.button and ident and date and origin and destination and available_seats:
+        if st.button and ident and date and origin and destination and available_seats and airl:
             flight = Flight(
                 ident,
                 date,
                 origin,
                 destination,
-                available_seats,
+                int(available_seats),
                 airl
             )
             return flight
@@ -359,8 +351,8 @@ class View:
             return
 
         data = {'ID': [], 'Brand': [], 'Model': [], 'Capacity': [], 'Max Speed': [],
-                'Autonomy': [], 'Year': [], 'Condition': [], 'Availability': [],
-                'Max Altitude': [], 'Engine Amount': [], 'Category': []}
+                'Autonomy': [], 'Year': [], 'Condition': [],
+                'Max Altitude': [], 'Engine Amount': [], 'Category': [], 'Estado': [], 'Cantidad de vuelos asociados': []}
 
         for id, airplane in airplanes.items():
             data['ID'].append(id)
@@ -371,10 +363,11 @@ class View:
             data['Autonomy'].append(airplane.autonomy)
             data['Year'].append(airplane.year)
             data['Condition'].append(airplane.condition)
-            data['Availability'].append(airplane.availability)
             data['Max Altitude'].append(airplane.max_altitude)
             data['Engine Amount'].append(airplane.engine_amount)
             data['Category'].append(airplane.category)
+            data['Estado'].append(airplane.state)
+            data['Cantidad de vuelos asociados'].append(airplane.assigned_flightsNum)
 
         st.dataframe(pd.DataFrame(data))
 
@@ -510,7 +503,7 @@ class View:
             st.info("No hay vuelos creados hasta el momento", icon="ℹ️")
             return
 
-        data = {'ID': [], 'Date': [], 'Origin': [], 'Destination': []}
+        data = {'ID': [], 'Date': [], 'Origin': [], 'Destination': [], 'available_seats': [], 'Aerolinea': [] }
 
         for id, flight in flights.items():
             data['ID'].append(id)
@@ -520,6 +513,10 @@ class View:
                 data['Origin'].append(flight.origin)
             if flight.destination is not None:
                 data['Destination'].append(flight.destination)
+            if flight.available_seats is not None:
+                data['available_seats'].append(flight.available_seats)
+            if flight.airline is not None:
+                data['Aerolinea'].append(flight.airline)
 
         st.dataframe(pd.DataFrame(data))
         
@@ -538,3 +535,23 @@ class View:
                 data['Name'].append(airline.name)
 
         st.dataframe(pd.DataFrame(data))
+    
+    def selectPasajero(self, names):
+        p = st.selectbox("Seleccione el pasajero que va reservar un vuelo:", names)
+        return p
+    def selectAerolinea(self, names):
+        a = st.selectbox("Seleccione una aerolinea:", names)
+        return a
+    def selectVuelo(self, names):
+        v = st.selectbox("Seleccione un vuelo:", names)
+        return v
+    def noHayAsientos(self):
+        st.error("Lo sentimos, no hay suficientes asientos disponibles para tu solicitud.")
+        
+    def asientosDisponibles(self, vuelo):
+        st.success(f"¡Asientos reservados con éxito para el vuelo {vuelo}!")
+    def noHayAvionesDisponibles(self):
+        st.error("Lo sentimos, no hay aviones con disponibilidad de vuelo por el momento.")
+    def noHayAviones(self):
+        st.error("Lo sentimos, no existen aciones hasta el momento")
+        
