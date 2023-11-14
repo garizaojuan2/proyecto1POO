@@ -172,15 +172,15 @@ class Controller:
     def assignFlight(self,ident,origin):
         ans = False
         l = self.model.getAllAvion()
+        flag = True
         for ap in l:
-            if l[ap].assigned_flightsNum < 3 and l[ap].state == "Disponible":
+            if l[ap].assigned_flightsNum < 3 and l[ap].state == "Disponible" and flag:
                 ans = True
                 if origin != "Cali" or l[ap].caliOrig == True:
+                    flag = False
                     if origin == "Cali":
                         self.model.updateAvion(l[ap].ident, ident, l[ap].assigned_flightsNum + 1, True)
-                        return ans
                     else:
                         self.model.updateAvion(l[ap].ident, ident, l[ap].assigned_flightsNum + 1, False)
-                        return ans
                 
         return ans
