@@ -13,6 +13,9 @@ import streamlit as st
 from view import View
 from modeloDeRevista import TodoModel
 from crew import Crew
+import json
+import requests
+import pandas as pd
 
 class Controller:
     def __init__(self):
@@ -37,7 +40,7 @@ class Controller:
         elif option == 'Report':
             self.report()
         elif option == "Json":
-            self.showJsonJson()
+            self.showJson()
         
     def createObjects(self):
         op = self.view.selectObject()
@@ -295,37 +298,43 @@ class Controller:
         self.view.showReport(ans)
                 
     def showJson(self):
-        contry = st.text_input("Ingrese un país:")      
-        a = self.getCountriesData(contry)
+        contry = st.text_input("Ingrese un país:") 
+        b = st.button("Consultar") 
+        a = self.consultarApi(contry)
+        if contry != "Error en la consulta de los datos" and b:
+            b = self.getCountriesData2(a)
+            self.view.showJson(b)
         
             
             
-    def getCountriesData(self,country):
-        url = f"https://restcountries.com/v3.1/name/{country}"
+    def consultarApi(self,country):
+        url = "https://restcountries.com/v3.1/name/" + country
         response = requests.get(url)
         if response.status_code == 200:
             data = json.loads(response.text)
             return data
-            #print(data[0]['name']['common'])
         else:
+ 
             return ("Error en la consulta de los datos")
 
+
     def getCountriesData2(self,data):
-        d={}
-        d["name"]=data[0]["name"]["official"]
-        d["capital"]=data[0]["capital"]
-        cur = ""
-        i=0
-        for key in data[0]["currencies"]:
-            cur = key
-            i+=1
-            if i>=1:
-                break
-        d["currency"]=data[0]["currencies"][cur]["name"]
-        d["region"]=data[0]["region"]
-        d["population"]=data[0]["population"]
-        d["flag"]=data[0]["flags"]["png"]
+        if data != type(str):
+            d={}
+            d["name"]=data[0]["name"]["official"]
+            d["capital"]=data[0]["capital"]
+            cur = ""
+            i=0
+            for key in data[0]["currencies"]:
+                cur = key
+                i+=1
+                if i>=1:
+                    break
+            d["currency"]=data[0]["currencies"][cur]["name"]
+            d["region"]=data[0]["region"]
+            d["population"]=data[0]["population"]
+            d["flag"]=data[0]["flags"]["png"]
         return d
-    
+        
 
 

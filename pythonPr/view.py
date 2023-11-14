@@ -132,14 +132,14 @@ class View:
         autonomy = st.text_input("Autonomía:", value=None)
         year = st.text_input("Año:", value=None)
         condition = st.text_input("Condición:", value=None)
-        availability = st.text_input("Disponibilidad:", value=None)
+        #availability = st.text_input("Disponibilidad:", value=None)
         engine_amount = st.text_input("Cantidad de Motores:", value=None)
         elevation_capacity = st.text_input("Capacidad de Elevación:", value=None)
         use = st.text_input("Uso:", value=None)
         
         st.button("Crear", type="primary")
 
-        if st.button and brand and model and ident and capacity and max_speed and autonomy and year and condition and availability:
+        if st.button and brand and model and ident and capacity and max_speed and autonomy and year and condition and engine_amount and elevation_capacity and use:
             helicopter = Helicopter(
                 brand,
                 model,
@@ -149,7 +149,6 @@ class View:
                 autonomy,
                 year,
                 condition,
-                availability,
                 engine_amount,
                 elevation_capacity,
                 use
@@ -172,7 +171,7 @@ class View:
         autonomy = st.text_input("Autonomía:", value=None)
         year = st.text_input("Año:", value=None)
         condition = st.text_input("Condición:", value=None)
-        availability = st.text_input("Disponibilidad:", value=None)
+        #availability = st.text_input("Disponibilidad:", value=None)
         owner = st.text_input("Propietario:", value=None)
         services = st.text_input("Servicios (separe los servicios por espacios)", value=None)
         destinations = st.text_input("Destinos (separe los detinos por espacios)", value=None)
@@ -182,7 +181,7 @@ class View:
         lDestinations = destinations.split()
         st.button("Crear", type="primary")
 
-        if st.button and brand and model and ident and capacity and max_speed and autonomy and year and condition and availability and owner:
+        if st.button and brand and model and ident and capacity and max_speed and autonomy and year and condition  and owner and lServices and lDestinations:
             jet = PrivateJet(
                 brand,
                 model,
@@ -192,7 +191,6 @@ class View:
                 autonomy,
                 year,
                 condition,
-                availability,
                 owner,
                 lServices,
                 lDestinations
@@ -401,7 +399,7 @@ class View:
             return
 
         data = {'ID': [], 'Brand': [], 'Model': [], 'Capacity': [], 'Max Speed': [],
-                'Autonomy': [], 'Year': [], 'Condition': [], 'Ubication': [], 'Availability': [],
+                'Autonomy': [], 'Year': [], 'Condition': [], 'Ubication': [],
                 'Engine Amount': [], 'Elevation Capacity': [], 'Use': []}
 
         for id, helicopter in helicopters.items():
@@ -414,7 +412,6 @@ class View:
             data['Year'].append(helicopter.year)
             data['Condition'].append(helicopter.condition)
             data['Ubication'].append(helicopter.ubication)
-            data['Availability'].append(helicopter.availability)
             data['Engine Amount'].append(helicopter.engine_amount)
             data['Elevation Capacity'].append(helicopter.elevation_capacity)
             data['Use'].append(helicopter.use)
@@ -429,7 +426,7 @@ class View:
             return
 
         data = {'ID': [], 'Brand': [], 'Model': [], 'Capacity': [], 'Max Speed': [],
-                'Autonomy': [], 'Year': [], 'Condition': [], 'Ubication': [], 'Availability': [],
+                'Autonomy': [], 'Year': [], 'Condition': [],
                 'Owner': [], 'Services': [], 'Destinations': []}
 
         for id, jet in private_jets.items():
@@ -441,8 +438,6 @@ class View:
             data['Autonomy'].append(jet.autonomy)
             data['Year'].append(jet.year)
             data['Condition'].append(jet.condition)
-            data['Ubication'].append(jet.ubication)
-            data['Availability'].append(jet.availability)
             data['Owner'].append(jet.owner)
             data['Services'].append(jet.services)
             data['Destinations'].append(jet.destinations)
@@ -565,3 +560,19 @@ class View:
     def showReport(self, ans):
         st.write(ans)
         
+    def showJson(self, d):
+        st.header(d["name"])
+        st.subheader("Capital")
+        st.write(d["capital"][0])
+        st.subheader("Moneda")
+        st.write(d["currency"])
+        st.subheader("Región")
+        st.write(d["region"])
+        st.subheader("Población")
+        st.write(d["population"])
+        st.subheader("Bandera")
+        st.image(d["flag"])
+        
+            
+    def ErrorGonorrea(self):
+        st.error("ERROR ERROR ERROR ERROR ")
