@@ -1,6 +1,19 @@
 
 class Aircraft:
-    def __init__(self,  brand = None,  model = None,  ident = None,  capacity = None,  max_speed = None,  autonomy = None,  year = None,  condition = None):
+    def __init__(self, brand=None, model=None, ident=None, capacity=None, max_speed=None, autonomy=None, year=None, condition=None):
+        """
+        Constructor de la clase Aircraft.
+
+        Parámetros:
+        - brand (str): Marca de la aeronave.
+        - model (str): Modelo de la aeronave.
+        - ident (str): Identificador único de la aeronave.
+        - capacity (int): Capacidad máxima de pasajeros de la aeronave.
+        - max_speed (float): Velocidad máxima de la aeronave.
+        - autonomy (float): Autonomía de vuelo de la aeronave.
+        - year (int): Año de fabricación de la aeronave.
+        - condition (str): Condición actual de la aeronave (e.g., "Operativa", "En mantenimiento").
+        """
         self.brand = brand
         self.model = model
         self.ident = ident
@@ -16,6 +29,7 @@ class Aircraft:
         self.caliOrig = False
         self.state = "Disponible"
 
+    # Métodos de acceso (Getters)
     def get_brand(self):
         return self.brand
 
@@ -52,6 +66,7 @@ class Aircraft:
     def get_assigned_flights(self):
         return len(self.assigned_flights)
 
+    # Métodos de modificación (Setters)
     def set_brand(self, brand):
         self.brand = brand
 
@@ -84,26 +99,49 @@ class Aircraft:
 
     def set_flight_associated(self, flight_associated):
         self.flight_associated = flight_associated
-    
-    def setAssociatedNum(self,num):
+
+    def setAssociatedNum(self, num):
         self.assigned_flightsNum = num
-        
+
     def setCaliOrig(self, b):
         self.caliOrig = b
-        
-    
 
+    # Otros métodos
     def take_off(self):
+        """
+        Solicita a la torre de control que autorice el despegue de la aeronave.
+        """
         ControlTower.get_instance().aircraft_take_off(self)
 
     def landed(self):
+        """
+        Informa a la torre de control que la aeronave ha aterrizado.
+        """
         ControlTower.get_instance().aircraft_landed(self)
 
     def report_location(self, ubicacion):
+        """
+        Informa a la torre de control la ubicación actual de la aeronave durante el vuelo.
+
+        Parámetros:
+        - ubicacion (str): Ubicación actual de la aeronave.
+        """
         ControlTower.get_instance().aircraft_in_flight(self, ubicacion)
 
     def recibe_info(self, mensaje):
+        """
+        Simula la recepción de un mensaje por parte de la aeronave.
+
+        Parámetros:
+        - mensaje (str): Mensaje recibido.
+        """
         print(f"Avion {self.ident} recibio un mensaje: {mensaje}")
 
     def add_flight(self, flight):
+        """
+        Añade un vuelo a la lista de vuelos asignados a la aeronave.
+
+        Parámetros:
+        - flight (Flight): Objeto Flight que representa el vuelo a ser añadido.
+        """
         self.assigned_flights.append(flight)
