@@ -15,6 +15,8 @@ import pandas as pd
 from airline import Airline
 
 class View:
+    
+    #### Metodos de comunicacion de la vista ####
     def __init__(self):
         st.title("Aeropuerto Alfonso Bonilla Aragón")
         
@@ -31,7 +33,6 @@ class View:
     def create_worker(self):
         st.header("Creación de Trabajador")
         
-        # Entradas de texto para las características del trabajador
         ident = st.text_input("ID:", value=None)
         name = st.text_input("Nombre:", value=None)
         last_name = st.text_input("Apellido:", value=None)
@@ -123,7 +124,6 @@ class View:
     def create_helicopter(self):
         st.header("Creación de Helicóptero")
         
-        # Entradas de texto para las características del helicóptero
         brand = st.text_input("Marca:", value=None)
         model = st.text_input("Modelo:", value=None)
         ident = st.text_input("ID:", value=None)
@@ -132,7 +132,6 @@ class View:
         autonomy = st.text_input("Autonomía:", value=None)
         year = st.text_input("Año:", value=None)
         condition = st.text_input("Condición:", value=None)
-        #availability = st.text_input("Disponibilidad:", value=None)
         engine_amount = st.text_input("Cantidad de Motores:", value=None)
         elevation_capacity = st.text_input("Capacidad de Elevación:", value=None)
         use = st.text_input("Uso:", value=None)
@@ -162,7 +161,6 @@ class View:
     def create_jet(self):
         st.header("Creación de Aeronave Personalizada")
         
-        # Entradas de texto para las características de la aeronave personalizada
         brand = st.text_input("Marca:", value=None)
         model = st.text_input("Modelo:", value=None)
         ident = st.text_input("ID:")
@@ -171,7 +169,6 @@ class View:
         autonomy = st.text_input("Autonomía:", value=None)
         year = st.text_input("Año:", value=None)
         condition = st.text_input("Condición:", value=None)
-        #availability = st.text_input("Disponibilidad:", value=None)
         owner = st.text_input("Propietario:", value=None)
         services = st.text_input("Servicios (separe los servicios por espacios)", value=None)
         destinations = st.text_input("Destinos (separe los detinos por espacios)", value=None)
@@ -224,7 +221,6 @@ class View:
         "Tonga", "Trinidad y Tobago", "Túnez", "Turkmenistán", "Turquía", "Tuvalu", "Ucrania", "Uganda", "Uruguay", "Uzbekistán",
         "Vanuatu", "Vaticano", "Venezuela", "Vietnam", "Yemen", "Yibuti", "Zambia", "Zimbabue"]
         
-        # Entradas de texto para las características del pasajero
         ident = st.text_input("ID:", value=None)
         name = st.text_input("Nombre:", value=None)
         last_name = st.text_input("Apellido:", value=None)
@@ -264,7 +260,6 @@ class View:
     def create_gate(self):
         st.header("Creación de Puerta de Embarque")
         
-        # Entradas de texto para las características de la puerta de embarque
         ident = st.text_input("ID:", value=None)
         location = st.text_input("Ubicación:", value=None)
         availability = st.text_input("Disponibilidad:", value=None)
@@ -314,36 +309,7 @@ class View:
         else:
             st.warning("Por favor, complete todos los campos requeridos.")
             
-            
-    """
-    def ver_objetos():
-        st.subheader("Ver objetos creados")
-        selected_option = st.selectbox("Seleccione una opción:", ["Trabajador", "Avión", "Helicóptero", "Jet privado", "Pasajeros", "Puerta de embarque"])
 
-        if selected_option == "Trabajador":
-            st.header("Trabajador")
-            controller.view_worker()
-
-        elif selected_option == "Avión":
-            st.header("Avión")
-            controller.view_airplane()
-
-        elif selected_option == "Helicóptero":
-            st.header("Helicóptero")
-            controller.view_helicopter()
-
-        elif selected_option == "Jet privado":
-            st.header("Jet privado")
-            controller.view_jet()
-
-        elif selected_option == "Pasajeros":
-            st.header("Pasajeros")
-            controller.view_passenger()
-
-        elif selected_option == "Puerta de embarque":
-            st.header("Puerta de embarque")
-            controller.view_gate()
-"""
         
 
     def listAllAirplanes(self, airplanes):
@@ -560,15 +526,38 @@ class View:
     def showReport(self, ans):
         st.write(ans)
         
+    def showFlight(self,ident, d):
+        st.divider()
+        st.header(f"Vuelo {ident}")
+        st.write(f"Origen {d[ident].origin}")
+        st.write(f"Origen {d[ident].destination}")
+        st.write(f"Origen {d[ident].date}")
+        
+    def showFlight(self,ident, d):
+        st.divider()
+        st.header(f"Vuelo {ident}")
+        st.write(f"Origen {d[ident].origin}")
+        st.write(f"Origen {d[ident].destination}")
+        st.write(f"Origen {d[ident].date}")
+        
     def showJson(self, d):
         st.header(d["name"])
-        st.subheader("Capital")
-        st.write(d["capital"][0])
-        st.subheader("Moneda")
-        st.write(d["currency"])
-        st.subheader("Región")
-        st.write(d["region"])
-        st.subheader("Población")
-        st.write(d["population"])
+        
         st.subheader("Bandera")
         st.image(d["flag"])
+        st.divider()
+        st.subheader("Capital")
+        st.write(d["capital"][0])
+        st.divider()
+        st.subheader("Moneda")
+        st.write(d["currency"])
+        st.divider()
+        st.subheader("Región")
+        st.write(d["region"])
+        st.divider()
+        st.subheader("Población")
+        st.write(d["population"])
+        
+        
+        
+            

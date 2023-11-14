@@ -67,7 +67,7 @@ class Controller:
                 names.append(l[a].name)
             l2 = self.model.getAllTrabajador()
             num = 1
-            total = len(l2)//3
+            total = len(l2)//3 + 1
             while num < total:
                 cad = f"Tripulación #{num}"
                 tripu.append(cad)
@@ -77,6 +77,7 @@ class Controller:
             if obj:
                 if len(self.model.getAllAvion()) != 0:
                     flag1 = self.assignFlight(obj.ident, obj.origin)
+                    flag2 = True
                     if flag1 == True:
                         idd = obj.ident
                         self.model.addNewVuelo(idd,obj) 
@@ -155,8 +156,7 @@ class Controller:
             aerolineas = self.model.getAllAirlines()  
             self.view.listAllAirlines(aerolineas)  
 
-
-   """
+    """
         Gestiona el proceso de reservación de vuelos.
 
         Muestra la interfaz de usuario para la selección de pasajero, aerolínea y vuelo.
@@ -200,7 +200,20 @@ class Controller:
                 self.view.asientosDisponibles(vuelo)
                 num = v.available_seats - 1
                 self.model.updateSeats(vuelo, num)
-                
+    """
+        Asigna un vuelo a un avión disponible.
+
+        Verifica la disponibilidad de aviones, asigna el vuelo al primer avión disponible
+        que cumple con los criterios y actualiza el estado del avión.
+
+        Parameters:
+        - ident (str): Identificador del vuelo a asignar.
+        - origin (str): Ciudad de origen del vuelo.
+
+        Returns:
+        - bool: True si el vuelo se asignó correctamente, False si no hay aviones disponibles o no se cumplen los criterios.
+
+    """           
     def assignFlight(self,ident,origin):
         ans = False
         l = self.model.getAllAvion()
@@ -215,41 +228,9 @@ class Controller:
                     else:
                         self.model.updateAvion(l[ap].ident, ident, l[ap].assigned_flightsNum + 1, False)
                 
-        return ans
+                return ans
     
-    
-    def reservar(self):
-        st.header("Reservacion de vuelos")
-        l = self.model.getAllPasajero()
-        names = []
-        for a in l:
-           names.append(l[a].name)         
-        pasajero = self.view.selectPasajero(names)
-        
-        l = self.model.getAllAirlines()
-        names = []
-        for a in l:
-            names.append(l[a].name)      
-        aerolinea = self.view.selectAerolinea(names)
-        
-        l = self.model.getAllVuelo()
-        names = []
-        for a in l:
-            if l[a].airline == aerolinea:
-                names.append(l[a].ident)
-        vuelo = self.view.selectVuelo(names)
-        
-        b = st.button("Reservar", type="primary")
-        if vuelo and aerolinea and pasajero and b:
-            l = self.model.getAllVuelo()
-            v = l[vuelo]
-            if v.available_seats <= 0:
-                self.view.noHayAsientos()
-            else:
-                self.view.asientosDisponibles(vuelo)
-                num = v.available_seats - 1
-                self.model.updateSeats(vuelo, num)
-                
+         
     def assignFlight(self,ident,origin):
         
         ans = False
@@ -271,51 +252,51 @@ class Controller:
         ans = ""
         st.header("Reporte de trafico")
         l = list(self.model.getAllAvion().keys())
-        torre = ControlTower.get_instance()
-
-        for i in range(len(l)):
-            ans += f"\nEl avión #{l[i]} se encuentra en puerta de embarque \n"
-            for j in range(len(l)):
-                if i != j:
-                    ans += f"\nEl avion #{l[j]} ha recibido el mensaje\n"
-        ans += "\n"
-        
-        for i in range(len(l)):
-            ans += f"\nEl avión #{l[i]} esta en pista \n"
-            for j in range(len(l)):
-                if i != j:
-                    ans += f"\nEl avion #{l[j]} ha recibido el mensaje\n"
-        ans += "\n"
-        
-        for i in range(len(l)):
-            ans += f"\nEl avión #{l[i]} ha despegado \n"
-            for j in range(len(l)):
-                if i != j:
-                    ans += f"\nEl avion #{l[j]} ha recibido el mensaje\n"
-        ans += "\n"
-        
-        for i in range(len(l)):
-            ans += f"\nEl avión #{l[i]} esta en vuelo \n"
-            for j in range(len(l)):
-                if i != j:
-                    ans += f"\nEl avion #{l[j]} ha recibido el mensaje\n"
-        ans += "\n"
-        
-        for i in range(len(l)):
-            ans += f"\nEl avión #{l[i]} ha aterrizado \n"
-            for j in range(len(l)):
-                if i != j:
-                    ans += f"\nEl avion #{l[j]} ha recibido el mensaje\n"
-        ans += "\n"
-        
-        self.view.showReport(ans)
+        b = st.button("Visualizar trafico:")
+        if b:
+            for i in range(len(l)):
+                ans += f"\nEl avión #{l[i]} se encuentra en puerta de embarque \n"
+                for j in range(len(l)):
+                    if i != j:
+                        ans += f"\nEl avion #{l[j]} ha recibido el mensaje\n"
+            ans += "\n"
+            
+            for i in range(len(l)):
+                ans += f"\nEl avión #{l[i]} esta en pista \n"
+                for j in range(len(l)):
+                    if i != j:
+                        ans += f"\nEl avion #{l[j]} ha recibido el mensaje\n"
+            ans += "\n"
+            
+            for i in range(len(l)):
+                ans += f"\nEl avión #{l[i]} ha despegado \n"
+                for j in range(len(l)):
+                    if i != j:
+                        ans += f"\nEl avion #{l[j]} ha recibido el mensaje\n"
+            ans += "\n"
+            
+            for i in range(len(l)):
+                ans += f"\nEl avión #{l[i]} esta en vuelo \n"
+                for j in range(len(l)):
+                    if i != j:
+                        ans += f"\nEl avion #{l[j]} ha recibido el mensaje\n"
+            ans += "\n"
+            
+            for i in range(len(l)):
+                ans += f"\nEl avión #{l[i]} ha aterrizado \n"
+                for j in range(len(l)):
+                    if i != j:
+                        ans += f"\nEl avion #{l[j]} ha recibido el mensaje\n"
+            ans += "\n"
+            
+            self.view.showReport(ans)
                 
     def showJson(self):
         contry = st.text_input("Ingrese un país:") 
         b = st.button("Consultar") 
         a = self.consultarApi(contry)
         if contry != "Error en la consulta de los datos" and b:
-            b = self.getCountriesData2(a)
+            b = self.infoCountry(a)
             self.view.showJson(b)
         
             
@@ -331,11 +312,11 @@ class Controller:
             return ("Error en la consulta de los datos")
 
 
-    def getCountriesData2(self,data):
+    def infoCountry(self,data):
         if data != type(str):
-            d={}
-            d["name"]=data[0]["name"]["official"]
-            d["capital"]=data[0]["capital"]
+            dic={}
+            dic["name"]=data[0]["name"]["official"]
+            dic["capital"]=data[0]["capital"]
             cur = ""
             i=0
             for key in data[0]["currencies"]:
@@ -343,11 +324,11 @@ class Controller:
                 i+=1
                 if i>=1:
                     break
-            d["currency"]=data[0]["currencies"][cur]["name"]
-            d["region"]=data[0]["region"]
-            d["population"]=data[0]["population"]
-            d["flag"]=data[0]["flags"]["png"]
-        return d
+            dic["currency"]=data[0]["currencies"][cur]["name"]
+            dic["region"]=data[0]["region"]
+            dic["population"]=data[0]["population"]
+            dic["flag"]=data[0]["flags"]["png"]
+        return dic
         
 
 
