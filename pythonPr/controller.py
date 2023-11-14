@@ -156,6 +156,14 @@ class Controller:
             self.view.listAllAirlines(aerolineas)  
 
 
+   """
+        Gestiona el proceso de reservación de vuelos.
+
+        Muestra la interfaz de usuario para la selección de pasajero, aerolínea y vuelo.
+        Permite al usuario reservar un vuelo si hay asientos disponibles.
+        Actualiza la cantidad de asientos disponibles después de realizar la reserva.
+
+    """
     def reservar(self):
         st.header("Reservación de vuelos")
         l = self.model.getAllPasajero()
@@ -172,10 +180,15 @@ class Controller:
         
         l = self.model.getAllVuelo()
         names = []
+
         for a in l:
+
             if l[a].airline == aerolinea:
                 names.append(l[a].ident)
+
         vuelo = self.view.selectVuelo(names)
+        
+        self.view.showFlight(vuelo, self.model.getAllVuelo())
         
         b = st.button("Reservar", type="primary")
         if vuelo and aerolinea and pasajero and b:
