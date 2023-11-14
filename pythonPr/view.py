@@ -295,7 +295,10 @@ class View:
         destination = st.text_input("Destino:", value=None)
         available_seats = st.text_input("Sillas disponibles:", value=None)
         airl = st.selectbox("Seleccione la aerolinea asociada", names)
-        crew = st.selectbox("Seleccione la tripulación asociada", tripu)
+        if len(tripu) == 0:
+            st.warning("Deben de existir minimo 3 trabajadores")
+        else:
+            crew = st.selectbox("Seleccione la tripulación asociada", tripu)
         st.button("Crear", type="primary")
 
         if st.button and ident and date and origin and destination and available_seats and airl:
@@ -486,11 +489,11 @@ class View:
         for id, worker in workers.items():
             data['ID'].append(id)
             data['Name'].append(worker.name)
-            data['Last Name'].append(worker.last_name)
+            data['Last Name'].append(worker.lastName)
             data['Birthdate'].append(worker.birthdate)
             data['Gender'].append(worker.gender)
             data['Address'].append(worker.address)
-            data['Phone Number'].append(worker.phone_number)
+            data['Phone Number'].append(worker.phoneNumber)
             data['Email'].append(worker.email)
             data['Position'].append(worker.position)
             data['Years of Experience'].append(worker.yearsOfExperience)

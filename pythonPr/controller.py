@@ -105,7 +105,7 @@ class Controller:
             obj = self.view.create_worker()
             if obj:
                 idd = obj.ident
-                self.model.addNewcrew(idd,obj)  
+                self.model.addNewTrabajador(idd, obj)
                 
         elif op == 'Aerolinea':
             obj = self.view.create_airline()

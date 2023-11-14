@@ -75,17 +75,19 @@ class TodoModel:
         st.session_state['trabajador'] = self.trabajador
         dic = self.crew
         flag = True
-        num = 0
-        for tripulacion in dic:
+     
+        i = 1
+        while i < len(dic):
+           
             if flag:
-                if tripulacion.len() < 3:
+                if len(dic[i]) < 3:
                     self.crew['crew'].append(trabajador)
                     flag = False
-            num += 1
+                    
         if flag:
             tripu = []
             tripu.append(trabajador)
-            self.crew[num + 1] = tripu
+            self.crew[i + 1] = tripu
         st.session_state['crew'] = self.crew
 
 
