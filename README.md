@@ -26,8 +26,8 @@ Tienes la opción de revisar los objetos que hayas creado y verificar los atribu
 Para crear un vuelo, debes seguir los siguientes pasos:
 
 1. Selecciona el pasajero para la reserva (es necesario haber creado al menos un pasajero).
-2. Elige la aerolínea.
-3. Selecciona el vuelo que deseas reservar, mostrando el origen y destino según el código del vuelo seleccionado.
+2. Elige la aerolínea (es necesario haber creado al menos una aerolínea).
+3. Selecciona el vuelo que deseas reservar, mostrando el origen y destino según el código del vuelo seleccionado (es necesario haber creado al menos un vuelo).
 
 ## Report
 
