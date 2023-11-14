@@ -572,7 +572,3 @@ class View:
         st.write(d["population"])
         st.subheader("Bandera")
         st.image(d["flag"])
-        
-            
-    def ErrorGonorrea(self):
-        st.error("ERROR ERROR ERROR ERROR ")
