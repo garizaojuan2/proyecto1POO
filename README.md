@@ -1,38 +1,47 @@
-# Aeropuerto Alfonso Bonilla Aragón
+# Manual de Usuario
 
-## Manual de Usuario
+Este programa te permite gestionar el Aeropuerto Alfonso Bonilla Aragón. A continuación, se describen las funcionalidades disponibles para el usuario:
 
-Este código fuente proporciona diferentes funcionalidades para el manejo del aeropuerto Alfonso Bonilla Aragón. El objetivo principal es facilitar la gestión de objetos relacionados con el aeropuerto y permitir a los usuarios reservar vuelos. A continuación, se proporciona una guía de usuario para utilizar este software.
+## Crear Objetos
 
-### Menú Principal
+Puedes crear diversos objetos seleccionando una de las siguientes opciones:
 
-Al ejecutar el programa, se mostrará un menú principal con las siguientes opciones:
+- Avión
+- Helicóptero
+- Jet Privado
+- Vuelo
+- Puerta de Embarque
+- Pasajero
+- Trabajador
+- Aerolínea
 
-1. **Crear Objetos**: Permite al usuario crear diferentes tipos de objetos relacionados con el aeropuerto, como aviones, jets, helicópteros, pasajeros, vuelos y puertas de embarque.
+Al seleccionar una opción, deberás completar todos los atributos requeridos para el objeto y hacer clic en el botón "Crear". No podrás crear un objeto sin llenar todos los datos necesarios.
 
-2. **Reservar Vuelo**: Permite al usuario registrar un nuevo usuario y reservar un vuelo. Asegúrate de proporcionar datos válidos, ya que el sistema verificará la disponibilidad de vuelos en función de la fecha y el destino elegidos.
+## Revisar Objetos
 
-3. **Consultar Objetos**: Permite al usuario consultar y ver información detallada de todos los objetos del mismo tipo que existen en el aeropuerto. Esto incluye aviones, jets, helicópteros, pasajeros, vuelos y puertas de embarque.
+Tienes la opción de revisar los objetos que hayas creado y verificar los atributos asignados a cada uno.
 
-4. **Salir**: Cierra el programa y reinicia el aeropuerto.
+## Reservar Vuelo
 
-### Crear Objetos
+Para crear un vuelo, debes seguir los siguientes pasos:
 
-Cuando selecciones la opción "Crear Objetos", podrás elegir el tipo de objeto que deseas crear. El programa te guiará para ingresar los valores de los atributos de ese objeto. Asegúrate de ingresar valores numéricos en los campos correspondientes.
+1. Selecciona el pasajero para la reserva (es necesario haber creado al menos un pasajero).
+2. Elige la aerolínea.
+3. Selecciona el vuelo que deseas reservar, mostrando el origen y destino según el código del vuelo seleccionado.
 
-### Reservar Vuelo
+## Report
 
-Para reservar un vuelo, primero deberás registrar un nuevo usuario. Luego, podrás seleccionar un destino y una fecha para tu vuelo. El sistema verificará la disponibilidad y te informará si el vuelo está lleno o no disponible en la fecha seleccionada.
+Además, en la misma caja de selección, puedes optar por la opción "Report", que muestra la comunicación entre las aeronaves y la torre de control.
 
-### Consultar Objetos
+## JSON
 
-La opción "Consultar Objetos" te permitirá obtener información detallada sobre los objetos del mismo tipo en el aeropuerto. Puedes utilizar esta opción para obtener una vista general de lo que está sucediendo en el aeropuerto.
+Utiliza la opción "JSON" para obtener información sobre un país. Ingresa el nombre del país en minúsculas, haz clic en "Consultar" y obtendrás los siguientes datos:
 
-### Salir
+- Nombre
+- Capital
+- Moneda
+- Región
+- Población
+- Imagen de la bandera
 
-La opción "Salir" cerrará el programa y restablecerá el estado del aeropuerto.
-
-**Nota**: Asegúrate de proporcionar datos válidos en cada paso para evitar errores en el programa.
-
-
-¡Disfruta de tu experiencia en el aeropuerto Alfonso Bonilla Aragón!
+¡Eso es todo! Disfruta de tu aplicación.
