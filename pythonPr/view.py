@@ -20,7 +20,7 @@ class View:
         
     def menu(self):
         st.header("Menú de opciones")
-        option = st.selectbox('Seleccione la operación que quiere realizar:', ['Crear una objeto', 'Ver los objetos', 'Reservar un vuelo', 'Funciones de la torre de control', 'Json'])
+        option = st.selectbox('Seleccione la operación que quiere realizar:', ['Crear una objeto', 'Ver los objetos', 'Reservar un vuelo', 'Report', 'Json'])
         return option
     
     def selectObject(self):
@@ -561,4 +561,7 @@ class View:
         st.error("Lo sentimos, no existen aviones hasta el momento")
     def noHayTripulaciones(self):
         st.error("Lo sentimos, no existen tripulaciones hasta el momento")
+        
+    def showReport(self, ans):
+        st.write(ans)
         

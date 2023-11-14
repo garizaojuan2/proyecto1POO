@@ -33,12 +33,12 @@ class Controller:
         elif option == 'Reservar un vuelo':
             self.reservar()
             
-        """
-        elif option == 'Cambiar estado de vuelo':
-            self.removeTask()
+        
+        elif option == 'Report':
+            self.report()
         elif option == "Json":
-            self.Json()
-        """
+            self.showJsonJson()
+        
     def createObjects(self):
         op = self.view.selectObject()
         if op =='Avión':
@@ -64,7 +64,7 @@ class Controller:
                 names.append(l[a].name)
             l2 = self.model.getAllTrabajador()
             num = 1
-            total = len(l2)//3 
+            total = len(l2)//3
             while num < total:
                 cad = f"Tripulación #{num}"
                 tripu.append(cad)
@@ -200,5 +200,132 @@ class Controller:
                         self.model.updateAvion(l[ap].ident, ident, l[ap].assigned_flightsNum + 1, False)
                 
         return ans
+    
+    
+    def reservar(self):
+        st.header("Reservacion de vuelos")
+        l = self.model.getAllPasajero()
+        names = []
+        for a in l:
+           names.append(l[a].name)         
+        pasajero = self.view.selectPasajero(names)
+        
+        l = self.model.getAllAirlines()
+        names = []
+        for a in l:
+            names.append(l[a].name)      
+        aerolinea = self.view.selectAerolinea(names)
+        
+        l = self.model.getAllVuelo()
+        names = []
+        for a in l:
+            if l[a].airline == aerolinea:
+                names.append(l[a].ident)
+        vuelo = self.view.selectVuelo(names)
+        
+        b = st.button("Reservar", type="primary")
+        if vuelo and aerolinea and pasajero and b:
+            l = self.model.getAllVuelo()
+            v = l[vuelo]
+            if v.available_seats <= 0:
+                self.view.noHayAsientos()
+            else:
+                self.view.asientosDisponibles(vuelo)
+                num = v.available_seats - 1
+                self.model.updateSeats(vuelo, num)
+                
+    def assignFlight(self,ident,origin):
+        
+        ans = False
+        l = self.model.getAllAvion()
+        for ap in l:
+            if l[ap].assigned_flightsNum < 3:
+                ans = True
+                if origin != "Cali" or l[ap].caliOrig == True:
+                    if origin == "Cali":
+                        self.model.updateAvion(l[ap].ident, ident, l[ap].assigned_flightsNum + 1, True)
+                        return ans
+                    else:
+                        self.model.updateAvion(l[ap].ident, ident, l[ap].assigned_flightsNum + 1, False)
+                        return ans
+                
+        return ans
+    
+    def report(self):
+        ans = ""
+        st.header("Reporte de trafico")
+        l = list(self.model.getAllAvion().keys())
+        torre = ControlTower.get_instance()
+
+        for i in range(len(l)):
+            ans += f"\nEl avión #{l[i]} se encuentra en puerta de embarque \n"
+            for j in range(len(l)):
+                if i != j:
+                    ans += f"\nEl avion #{l[j]} ha recibido el mensaje\n"
+        ans += "\n"
+        
+        for i in range(len(l)):
+            ans += f"\nEl avión #{l[i]} esta en pista \n"
+            for j in range(len(l)):
+                if i != j:
+                    ans += f"\nEl avion #{l[j]} ha recibido el mensaje\n"
+        ans += "\n"
+        
+        for i in range(len(l)):
+            ans += f"\nEl avión #{l[i]} ha despegado \n"
+            for j in range(len(l)):
+                if i != j:
+                    ans += f"\nEl avion #{l[j]} ha recibido el mensaje\n"
+        ans += "\n"
+        
+        for i in range(len(l)):
+            ans += f"\nEl avión #{l[i]} esta en vuelo \n"
+            for j in range(len(l)):
+                if i != j:
+                    ans += f"\nEl avion #{l[j]} ha recibido el mensaje\n"
+        ans += "\n"
+        
+        for i in range(len(l)):
+            ans += f"\nEl avión #{l[i]} ha aterrizado \n"
+            for j in range(len(l)):
+                if i != j:
+                    ans += f"\nEl avion #{l[j]} ha recibido el mensaje\n"
+        ans += "\n"
+        
+        self.view.showReport(ans)
+                
+    def showJson(self):
+        contry = st.text_input("Ingrese un país:")      
+        a = self.getCountriesData(contry)
+        
+            
+            
+    def getCountriesData(self,country):
+        url = f"https://restcountries.com/v3.1/name/{country}"
+        response = requests.get(url)
+        if response.status_code == 200:
+            data = json.loads(response.text)
+            return data
+            #print(data[0]['name']['common'])
+        else:
+            return ("Error en la consulta de los datos")
+
+    def getCountriesData2(self,data):
+        d={}
+        d["name"]=data[0]["name"]["official"]
+        d["capital"]=data[0]["capital"]
+        cur = ""
+        i=0
+        for key in data[0]["currencies"]:
+            cur = key
+            i+=1
+            if i>=1:
+                break
+        d["currency"]=data[0]["currencies"][cur]["name"]
+        d["region"]=data[0]["region"]
+        d["population"]=data[0]["population"]
+        d["flag"]=data[0]["flags"]["png"]
+        return d
+    
 
 
